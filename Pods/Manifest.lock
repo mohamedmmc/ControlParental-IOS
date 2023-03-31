@@ -1,0 +1,87 @@
+PODS:
+  - Alamofire (5.6.4)
+  - AppAuth (1.6.0):
+    - AppAuth/Core (= 1.6.0)
+    - AppAuth/ExternalUserAgent (= 1.6.0)
+  - AppAuth/Core (1.6.0)
+  - AppAuth/ExternalUserAgent (1.6.0):
+    - AppAuth/Core
+  - Faye (2.2.5):
+    - Starscream (~> 4.0)
+  - GetStream (2.2.5):
+    - GetStream/Core (= 2.2.5)
+    - GetStream/Faye (= 2.2.5)
+  - GetStream/Core (2.2.5):
+    - Moya (~> 14.0)
+    - Swime (~> 3.0)
+  - GetStream/Faye (2.2.5):
+    - Faye
+    - GetStream/Core
+  - GetStreamActivityFeed (2.2.3):
+    - GetStream (~> 2.2)
+    - Nuke (~> 8.1)
+    - Reusable (~> 4.1)
+    - SnapKit (~> 5.0)
+  - GoogleSignIn (6.2.4):
+    - AppAuth (~> 1.5)
+    - GTMAppAuth (~> 1.3)
+    - GTMSessionFetcher/Core (< 3.0, >= 1.1)
+  - GTMAppAuth (1.3.1):
+    - AppAuth/Core (~> 1.6)
+    - GTMSessionFetcher/Core (< 3.0, >= 1.5)
+  - GTMSessionFetcher/Core (2.3.0)
+  - Moya (14.0.0):
+    - Moya/Core (= 14.0.0)
+  - Moya/Core (14.0.0):
+    - Alamofire (~> 5.0)
+  - Nuke (8.4.1)
+  - Reusable (4.1.2):
+    - Reusable/Storyboard (= 4.1.2)
+    - Reusable/View (= 4.1.2)
+  - Reusable/Storyboard (4.1.2)
+  - Reusable/View (4.1.2)
+  - SnapKit (5.6.0)
+  - Starscream (4.0.4)
+  - Swime (3.0.6)
+
+DEPENDENCIES:
+  - Alamofire
+  - GetStreamActivityFeed
+  - GoogleSignIn
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - AppAuth
+    - Faye
+    - GetStream
+    - GetStreamActivityFeed
+    - GoogleSignIn
+    - GTMAppAuth
+    - GTMSessionFetcher
+    - Moya
+    - Nuke
+    - Reusable
+    - SnapKit
+    - Starscream
+    - Swime
+
+SPEC CHECKSUMS:
+  Alamofire: 4e95d97098eacb88856099c4fc79b526a299e48c
+  AppAuth: 8fca6b5563a5baef2c04bee27538025e4ceb2add
+  Faye: 61d08548567fa84b8555d1f1d22f33c837f5c01b
+  GetStream: bae30995e6abe32abac9ffde97c0811e2dba06f4
+  GetStreamActivityFeed: 3dc411e52e1c637d00692f0e3afff50854d21161
+  GoogleSignIn: 5651ce3a61e56ca864160e79b484cd9ed3f49b7a
+  GTMAppAuth: 0ff230db599948a9ad7470ca667337803b3fc4dd
+  GTMSessionFetcher: 3a63d75eecd6aa32c2fc79f578064e1214dfdec2
+  Moya: 5b45dacb75adb009f97fde91c204c1e565d31916
+  Nuke: d780e3507a86b86c589ab3cc5cd302d5456f06fb
+  Reusable: 6bae6a5e8aa793c9c441db0213c863a64bce9136
+  SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
+  Starscream: 5178aed56b316f13fa3bc55694e583d35dd414d9
+  Swime: d7b2c277503b6cea317774aedc2dce05613f8b0b
+
+PODFILE CHECKSUM: 4a33bcde9e359c2dc4e949561f0ff1c7d66d3152
+
+COCOAPODS: 1.11.3
