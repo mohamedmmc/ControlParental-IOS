@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import SendbirdUIKit
 
 
 @main
@@ -16,19 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     //var userid: String?
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
        
-        let APP_ID = "E8E24064-1528-4531-8964-727C6DEF7518"  // Specify your Sendbird application ID.
-        
-            SendbirdUI.initialize(applicationId: APP_ID) { // This is the origin.
-                // Initialization of SendbirdUIKit has started.
-                // Show a loading indicator.
-            } migrationHandler: {
-                // DB migration has started.
-            } completionHandler: { error in
-                // If DB migration is successful, proceed to the next step.
-                // If DB migration fails, an error exists.
-                // Hide the loading indicator.
-            }
-                SBUTheme.set(theme: .dark)
+
         
         UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font:UIFont(name: "HelveticaNeue", size: 15)!], for: .normal)
         UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font:UIFont(name: "HelveticaNeue", size: 15)!], for: .selected)

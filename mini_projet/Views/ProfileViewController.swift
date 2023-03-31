@@ -80,7 +80,7 @@ class ProfileViewController: UIViewController {
         else{
             
             let defaults = UserDefaults.standard
-            let _id = defaults.object(forKey: "_id") as! String
+            let _id = defaults.string(forKey: "_id") as! String
             print(_id);
             userViewModel.UpdateById(ID: _id, username: Username!, PhoneNumber: Phone!, Gender: Gender!, BirthDate: DateString, Description: Description!)
         }

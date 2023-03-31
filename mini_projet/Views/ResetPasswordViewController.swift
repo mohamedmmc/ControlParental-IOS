@@ -51,8 +51,7 @@ class ResetPasswordViewController: UIViewController {
          }
         
         let defaults = UserDefaults.standard
-        let em = defaults.object(forKey: "userEmail")
-        print(em!)
+        let em = defaults.string(forKey: "userEmail")
         UserViewModel().resetPassword(email:em as! String ,mdp:NewPassword!, otpReset: OTP!,
             onSuccess: {
             

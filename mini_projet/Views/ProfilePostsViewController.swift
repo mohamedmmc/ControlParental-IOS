@@ -83,7 +83,7 @@ class ProfilePostsViewController: UIViewController, UITableViewDelegate, UITable
         PostsTable.delegate = self
         
         let Defaults = UserDefaults.standard
-        let id = Defaults.object(forKey: "_id")
+        let id = Defaults.string(forKey: "_id")
         
         PostViewModel().GetPost(id: id as! String, onSuccess: {
             self.PostsTable.reloadData()

@@ -13,7 +13,7 @@ class UserViewModel:ObservableObject{
 
     
     @Published var VerificationEmail: String?
-    let hostAdresse="http://192.168.137.54:9090"
+    let hostAdresse="http://localhost:9090"
 
     
     func Login (email:String,password:String,onSuccess: @escaping () -> Void ,onFailure: @escaping (_ errorMessage: String) -> Void){
@@ -28,7 +28,6 @@ class UserViewModel:ObservableObject{
                 let defaults = UserDefaults.standard
                 defaults.set(data._id, forKey: "_id")
                 defaults.set(data.FullName, forKey: "FullName")
-                defaults.synchronize()
                 onSuccess()
                     
                 print(data)
@@ -57,7 +56,6 @@ class UserViewModel:ObservableObject{
                 let defaults = UserDefaults.standard
                 defaults.set(data._id, forKey: "_id")
                 defaults.set(data.FullName, forKey: "FullName")
-                defaults.synchronize()
                 onSuccess()
                     
                 print(data)
@@ -86,13 +84,11 @@ class UserViewModel:ObservableObject{
                 switch response.result {
                 case .success(let data): print("Registeration successful")
                     let defaults = UserDefaults.standard
+                    
                     defaults.set(data.email, forKey: "userEmail")
                     defaults.set(data._id, forKey: "_id")
-                    defaults.synchronize()
                     onSuccess()
-                    
-                    print(data)
-                    
+                                        
                 case .failure(let err):
                     onFailure(err.localizedDescription)
                     print("Registeration failed",err)
@@ -117,9 +113,7 @@ class UserViewModel:ObservableObject{
                 case .success(let data): print("Verification successful")
                 let defaults = UserDefaults.standard
                 defaults.set(data.email, forKey: "userEmail")
-                defaults.synchronize()
                 onSuccess()
-                print(data)
                     
                 case .failure(let err):
                     onFailure(err.localizedDescription)
@@ -147,9 +141,7 @@ class UserViewModel:ObservableObject{
                 case .success(let data): print("OTP sent to email")
                 let defaults = UserDefaults.standard
                 defaults.set(data.email, forKey: "userEmail")
-                defaults.synchronize()
                 onSuccess()
-                print(data)
             
                     
                 case .failure(let err):
@@ -173,7 +165,6 @@ class UserViewModel:ObservableObject{
                     
                 case .success(let data): print("Password reset with success")
                 onSuccess()
-                print(data)
                     
                 case .failure(let err):
                 onFailure(err.localizedDescription)
@@ -202,8 +193,6 @@ class UserViewModel:ObservableObject{
                     defaults.set(data.Description, forKey: "Description")
             
                     
-                    defaults.synchronize()
-               
                     print(data)
                 }
                 
@@ -257,7 +246,6 @@ class UserViewModel:ObservableObject{
                     defaults.set(data.Description, forKey: "Description")
             
                     
-                    defaults.synchronize()
 
                     print(data)
                 }
