@@ -38,8 +38,16 @@ class ProfilePostsViewController: UIViewController, UITableViewDelegate, UITable
         Upload.setTitle("", for: .normal)
         PostsTable.dataSource = self
         PostsTable.delegate = self
-        
-        //ProfileImage.imageFromServerURL(urlString: d)
+        fullName.text = UserDefaults.standard.string(forKey: "FullName")
+        fullName2.text = UserDefaults.standard.string(forKey: "FullName")
+        userName.text = "@ " + (UserDefaults.standard.string(forKey: "username") ?? "Not provied")
+        if(UserDefaults.standard.string(forKey: "ProfilePic") ?? "").isEmpty {
+            ProfileImage.image = UIImage(named: "user")
+            profileImage2.image = UIImage(named: "user")
+        }else{
+            ProfileImage.imageFromServerURL(urlString: UserDefaults.standard.string(forKey: "ProfilePic")!)
+            profileImage2.imageFromServerURL(urlString: UserDefaults.standard.string(forKey: "ProfilePic")!)
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

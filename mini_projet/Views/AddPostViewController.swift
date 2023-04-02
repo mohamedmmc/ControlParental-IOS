@@ -48,15 +48,29 @@ class AddPostViewController: UIViewController, UIImagePickerControllerDelegate, 
     
     @IBAction func publish(_ sender: Any) {
         
-        postViewModel.AddPost(title: titleField.text!, description: descriptionField.text!,photo: picker_image! , onSuccess: {
-            //self.PostsTable.reloadData()
-            
+        // Check if UITextField is empty
+        if titleField.text?.isEmpty ?? true {
+            // Show alert
+            let alert = UIAlertController(title: "Error", message: "Please enter a value in the title field", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            present(alert, animated: true, completion: nil)
+        } else if imageview.image == nil {
+            // Show alert
+            let alert = UIAlertController(title: "Error", message: "Please select an image", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            present(alert, animated: true, completion: nil)
+        } else {
+            // Inputs are valid, proceed with sending the request to the server
+            postViewModel.AddPost(title: titleField.text!, description: descriptionField.text!,photo: picker_image! , onSuccess: {
                 
-        }, onFailure: {errorMessage in
-            print("error") }
-        )
-        self.navigationController?.popViewController(animated: true)
+                
+            }, onFailure: {errorMessage in
+                print("error") }
+            )
+            self.navigationController?.popViewController(animated: true)
+        }
+           
+            
         
     }
-    
 }

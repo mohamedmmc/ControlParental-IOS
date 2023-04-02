@@ -37,21 +37,11 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         title.text = post.title
         description.text = post.description
-        
-        
-
-        
-        username.text = allposts[indexPath.row].userId!
-    
-        
-        
-        
-        let url = URL(string: post.image!)
-        let data = try? Data(contentsOf: url!)
-
-        if let imageData = data {
-            let image = UIImage(data: imageData)
-            imageView.image = image
+        username.text = allposts[indexPath.row].userId?.FullName
+        if (allposts[indexPath.row].image == "no image"){
+            imageView.image = UIImage(named: "user")
+        } else{
+            imageView.imageFromServerURL(urlString: allposts[indexPath.row].image!)
         }
         return cell!
     }

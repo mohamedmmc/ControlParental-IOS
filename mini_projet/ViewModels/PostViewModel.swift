@@ -93,10 +93,10 @@ class PostViewModel:ObservableObject{
                    let parameters = ""
                    let postData =  parameters.data(using: .utf8)
 
-                   var request = URLRequest(url: URL(string: hostAdresse+"/getAllPosts/")!,timeoutInterval: Double.infinity)
+        var request = URLRequest(url: URL(string: hostAdresse+"/getAllPosts/" + UserDefaults.standard.string(forKey: "_id")!)!,timeoutInterval: Double.infinity)
                    request.httpMethod = "GET"
                    request.httpBody = postData
-
+        print(request)
                    let task = URLSession.shared.dataTask(with: request) { data, response, error in
                      guard let data = data else {
                        print(String(describing: error))

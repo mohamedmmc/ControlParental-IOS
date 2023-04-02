@@ -14,7 +14,7 @@ struct Post: Codable {
     let _id : String?
     let title : String?
     let description : String?
-    let userId:String?
+    let userId:User?
     let image: String?
     
    
@@ -33,7 +33,7 @@ struct Post: Codable {
     
  
     
-    init(_id:String,title:String,description:String,image:String,userId:String)
+    init(_id:String,title:String,description:String,image:String,userId:User)
     {
         self._id=_id
         self.title=title
