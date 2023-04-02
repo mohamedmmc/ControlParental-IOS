@@ -41,7 +41,7 @@ class LoginViewController: UIViewController {
         let emailPattern = #"^\S+@\S+\.\S+$"#
         let isEmail = Email.range(of: emailPattern,options: .regularExpression )
         
-        if( Email.isEmpty || Password.isEmpty || isEmail == nil)
+        if( Email.isEmpty || Password.isEmpty || (isEmail == nil))
         {
             //display alert
             
@@ -55,32 +55,9 @@ class LoginViewController: UIViewController {
                 
                 let defaults = UserDefaults.standard
                 let userid = defaults.string(forKey:"_id" )
-                let username = defaults.string(forKey: "FullName")
-                
-                SBUGlobals.currentUser = SBUUser(userId: userid!, nickname: username!)
-                                
-                SendbirdUI.connect { (user, error) in
-                                    guard let user = user else {
-                                        // The user is offline and you can't access any user information stored in the local cache.
-                                        return
-                                    }
-                                    if let error = error {
-                                        // The user is offline but you can access user information stored in the local cache.
-                                        print(error)
-                                    }
-                                    else {
-                                        // The user is online and connected to the server.
-                                        print("login to SB success")
-                                    }
-                                }
-                                
-                
+                let username = defaults.string(forKey: "FullName")         
                 self.navigationController?.pushViewController(Home, animated: false)
-                
-                
-                
-                
-                
+
                 },
                                 
                                 onFailure: {

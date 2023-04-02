@@ -230,27 +230,39 @@ class UserViewModel:ObservableObject{
         
     }
     
-    func UpdateById(ID:String,username:String,PhoneNumber:String,Gender:String,BirthDate:String,Description:String)
+    func UpdateById(ID:String,username:String,PhoneNumber:String,Gender:String,BirthDate:String,Description:String,onSuccess: @escaping () -> Void ,onFailure: @escaping (_ errorMessage: String) -> Void)
     {
         AF.request(hostAdresse+"/MiniProjet/update/"+ID, method: .put, parameters: ["username":username,"PhoneNumber":PhoneNumber,"Gender":Gender,"BirthDate":BirthDate,"Description":Description] ,encoding: JSONEncoding.default)
             .validate()
-            .responseDecodable(of: User.self) {
-                (response) in
-                guard let data = response.value else { return }
-                do {
-                    let defaults = UserDefaults.standard
-                    defaults.set(data.username, forKey: "username")
-                    defaults.set(data.PhoneNumber, forKey: "PhoneNumber")
-                    defaults.set(data.Gender, forKey: "Gender")
-                    defaults.set(data.BirthDate, forKey: "BirthDate")
-                    defaults.set(data.Description, forKey: "Description")
-            
-                    
+            .responseDecodable(of: User.self)
+                {
+                   (response) in
+                   switch response.result {
+                       
+                   case .success(_): guard let data = response.value else { return }
+                       do {
+                           let defaults = UserDefaults.standard
+                           defaults.set(data.username, forKey: "username")
+                           defaults.set(data.PhoneNumber, forKey: "PhoneNumber")
+                           defaults.set(data.Gender, forKey: "Gender")
+                           defaults.set(data.BirthDate, forKey: "BirthDate")
+                           defaults.set(data.Description, forKey: "Description")
+                   
+                           
 
-                    print(data)
-                }
-                
-            }
+                           print(data)
+                       }
+                   onSuccess()
+                       
+                   case .failure(let err):
+                   onFailure(err.localizedDescription)
+                   print("Password reset failed",err)
+                       
+                       
+                       return
+                   }
+                   
+               }
     }
     
     func logOut()

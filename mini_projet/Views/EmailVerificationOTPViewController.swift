@@ -45,7 +45,7 @@ class EmailVerificationOTPViewController: UIViewController {
         
         let defaults = UserDefaults.standard
         let em = defaults.string(forKey: "userEmail")
-        UserViewModel().verifyEmail(email:"mohamedmelek.chtourou@esprit.tn" , otp: OTP!,
+        UserViewModel().verifyEmail(email:em! , otp: OTP!,
             onSuccess: {
 
 

@@ -82,7 +82,31 @@ class ProfileViewController: UIViewController {
             let defaults = UserDefaults.standard
             let _id = defaults.string(forKey: "_id") as! String
             print(_id);
-            userViewModel.UpdateById(ID: _id, username: Username!, PhoneNumber: Phone!, Gender: Gender!, BirthDate: DateString, Description: Description!)
+            userViewModel.UpdateById(ID: _id, username: Username!, PhoneNumber: Phone!, Gender: Gender!, BirthDate: DateString, Description: Description!,    onSuccess: {
+                
+                
+                // Switch to the new view controller
+                DispatchQueue.main.async {
+                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                    guard let tabBarController = storyboard.instantiateViewController(withIdentifier: "Home") as? UITabBarController else {
+                        return
+                    }
+
+                    let viewControllerToSelect = 3
+                    tabBarController.selectedIndex = viewControllerToSelect
+                    tabBarController.modalPresentationStyle = .fullScreen
+                    self.present(tabBarController, animated: true, completion: nil)
+                }
+            
+            
+            },
+                            
+            onFailure: {
+            (errorMessage) in
+            self.displayAlert(UserMessage:"Something went wrong");
+                print(errorMessage)
+                
+        })
         }
 
         
@@ -91,10 +115,12 @@ class ProfileViewController: UIViewController {
     
     @IBAction func test(_ sender: Any) {
         
-         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let Login = storyboard.instantiateViewController(identifier: "Login")
-        
-        self.navigationController?.popToRootViewController(animated: true)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil) // Remplacez "Main" par le nom de votre Storyboard
+        let newViewController = storyboard.instantiateViewController(withIdentifier: "Login") // Remplacez "Login" par l'identifiant de votre nouvelle UIViewController
+        newViewController.modalPresentationStyle = .fullScreen
+        // Présenter la nouvelle UIViewController
+        self.present(newViewController, animated: true, completion: nil)
+
     }
     func displayAlert(UserMessage:String){
         var myAlert=UIAlertController(title: "Alert", message: UserMessage,preferredStyle: UIAlertController.Style.alert);

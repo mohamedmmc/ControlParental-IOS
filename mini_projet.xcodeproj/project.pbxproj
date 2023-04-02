@@ -25,7 +25,6 @@
 		4A4D0EA3293D180700DC2572 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4D0EA2293D180700DC2572 /* TabBarController.swift */; };
 		4A54410D292936CF005A03A0 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A54410C292936CF005A03A0 /* UserViewModel.swift */; };
 		4A54410F29293B8D005A03A0 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A54410E29293B8D005A03A0 /* User.swift */; };
-		4A5441112929423B005A03A0 /* usertest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A5441102929423B005A03A0 /* usertest.swift */; };
 		4A6362D729392F9800FDD927 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6362D629392F9800FDD927 /* PostTableViewCell.swift */; };
 		4A6362D9293A7ACD00FDD927 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6362D8293A7ACD00FDD927 /* Post.swift */; };
 		4A6362DB293A7B9B00FDD927 /* PostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6362DA293A7B9B00FDD927 /* PostViewModel.swift */; };
@@ -34,6 +33,7 @@
 		4AAD9F63293E76FC0024ADCB /* ProfilePostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAD9F62293E76FC0024ADCB /* ProfilePostsViewController.swift */; };
 		4AB4DA3E295DF91200943BC7 /* AddPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB4DA3D295DF91200943BC7 /* AddPostViewController.swift */; };
 		4AE7BD2A2928462D008C952F /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4AE7BD292928462D008C952F /* Launch Screen.storyboard */; };
+		57F7B50A29D9009E00869709 /* extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F7B50929D9009E00869709 /* extensions.swift */; };
 		E01DECAE9E4D2A7D98495688 /* Pods_mini_projet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8788214FCB507075666E9810 /* Pods_mini_projet.framework */; };
 /* End PBXBuildFile section */
 
@@ -59,7 +59,6 @@
 		4A4D0EA2293D180700DC2572 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		4A54410C292936CF005A03A0 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		4A54410E29293B8D005A03A0 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		4A5441102929423B005A03A0 /* usertest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = usertest.swift; sourceTree = "<group>"; };
 		4A6362D629392F9800FDD927 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		4A6362D8293A7ACD00FDD927 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		4A6362DA293A7B9B00FDD927 /* PostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewModel.swift; sourceTree = "<group>"; };
@@ -67,6 +66,7 @@
 		4AAD9F62293E76FC0024ADCB /* ProfilePostsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePostsViewController.swift; sourceTree = "<group>"; };
 		4AB4DA3D295DF91200943BC7 /* AddPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPostViewController.swift; sourceTree = "<group>"; };
 		4AE7BD292928462D008C952F /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		57F7B50929D9009E00869709 /* extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensions.swift; sourceTree = "<group>"; };
 		8788214FCB507075666E9810 /* Pods_mini_projet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_mini_projet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9686F7254AE102BA12D951E7 /* Pods-mini_projet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mini_projet.debug.xcconfig"; path = "Target Support Files/Pods-mini_projet/Pods-mini_projet.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -122,6 +122,7 @@
 		4A1F71DC29252B4A0066782C /* mini_projet */ = {
 			isa = PBXGroup;
 			children = (
+				57F7B50829D9008600869709 /* extentions */,
 				4A54410B2929367F005A03A0 /* Views */,
 				4A54410A29293664005A03A0 /* ViewModels */,
 				4A54410929293653005A03A0 /* Models */,
@@ -148,7 +149,6 @@
 			isa = PBXGroup;
 			children = (
 				4A54410C292936CF005A03A0 /* UserViewModel.swift */,
-				4A5441102929423B005A03A0 /* usertest.swift */,
 				4A6362DA293A7B9B00FDD927 /* PostViewModel.swift */,
 			);
 			path = ViewModels;
@@ -175,6 +175,14 @@
 				4AB4DA3D295DF91200943BC7 /* AddPostViewController.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		57F7B50829D9008600869709 /* extentions */ = {
+			isa = PBXGroup;
+			children = (
+				57F7B50929D9009E00869709 /* extensions.swift */,
+			);
+			path = extentions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -321,7 +329,7 @@
 				4A1F71E029252B4A0066782C /* SceneDelegate.swift in Sources */,
 				4A6362D9293A7ACD00FDD927 /* Post.swift in Sources */,
 				4A389332292BEE59003217C5 /* EmailVerificationOTPViewController.swift in Sources */,
-				4A5441112929423B005A03A0 /* usertest.swift in Sources */,
+				57F7B50A29D9009E00869709 /* extensions.swift in Sources */,
 				4AB4DA3E295DF91200943BC7 /* AddPostViewController.swift in Sources */,
 				4A6362DB293A7B9B00FDD927 /* PostViewModel.swift in Sources */,
 			);

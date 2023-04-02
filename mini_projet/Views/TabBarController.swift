@@ -6,36 +6,28 @@
 //
 
 import UIKit
-import SendbirdUIKit
 
-class TabBarController: UITabBarController, UITabBarControllerDelegate {
-    
-
-    
-    @IBOutlet weak var tabbar: UITabBar!
-    
-    
-    
+class TabBarController: UITabBarController{
     override func viewDidLoad() {
-        super.viewDidLoad()
+      super.viewDidLoad()
+      delegate = self
 
     }
-    
-    
-    override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
-        let indexOfTab = tabBar.items?.firstIndex(of: item)
-        print("pressed tabBar: \(String(describing: indexOfTab))")
-        if (indexOfTab == 1) {
-            
-            let groupChannelListVC = SBUGroupChannelListViewController()
-            let naviVC = UINavigationController(rootViewController: groupChannelListVC)
-            naviVC.modalPresentationStyle = .fullScreen
+}
 
-            self.present(naviVC, animated: true)
+extension TabBarController: UITabBarControllerDelegate  {
+    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+
+        guard let fromView = selectedViewController?.view, let toView = viewController.view else {
+          return false // Make sure you want this as false
         }
-    }
-    
-    
 
- 
+        if fromView != toView {
+          
+            
+            UIView.transition(from: fromView, to: toView, duration: 0.3, options: [.transitionCrossDissolve], completion: nil)
+        }
+
+        return true
+    }
 }

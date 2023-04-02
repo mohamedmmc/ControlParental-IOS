@@ -61,8 +61,11 @@ class ResetPasswordViewController: UIViewController {
                             
             onFailure: {
             (errorMessage) in
-            self.displayAlert(UserMessage:"Invalid OTP");
-                print(errorMessage)
+            DispatchQueue.main.async {
+                self.displayAlert(UserMessage:"Invalid OTP");
+                    print(errorMessage)
+            }
+          
                 
         })
         
