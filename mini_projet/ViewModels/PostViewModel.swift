@@ -39,49 +39,56 @@ class PostViewModel:ObservableObject{
                                 }
 
 
-            }, to: hostAdresse+"/addPost/") .responseDecodable(of: Post.self) { response in
-                debugPrint(response)
-            }
-
-
-            }
-                  
-                
-                
-        
-    
-        
-    
-    
-    func GetPost(id:String,onSuccess: @escaping () -> Void ,onFailure: @escaping (_ errorMessage: String) -> Void)
-        {
-            AF.request(hostAdresse+"/getPost/"+id, method: .get,encoding: JSONEncoding.default)
-                .validate()
-                .responseDecodable(of: [Post].self) {
-                    (response) in
-                    switch response.result {
-                        
-                        case .success(let data):
-                        self.UserPosts = data
-                        print("Post get successful")
-                        
-                   
-                        onSuccess()
-
-                        //print(data)
-                        
-                        case .failure(let err):
-                        onFailure(err.localizedDescription)
-                        print("Failed to get post",err)
-                        
-                        return
-                    }
-                  
-                    
-                      
+                }, to: hostAdresse+"/addPost/") .responseDecodable(of: Post.self) { response in
                     
                     
                 }
+
+            }
+                  
+                
+                
+        
+    
+        
+    
+    
+    func GetPost() -> Array<Post>{
+        
+            var posts = [Post]()
+
+               var semaphore = DispatchSemaphore (value: 0)
+
+               let parameters = ""
+               let postData =  parameters.data(using: .utf8)
+
+    var request = URLRequest(url: URL(string: hostAdresse+"/getPost/" + UserDefaults.standard.string(forKey: "_id")!)!,timeoutInterval: Double.infinity)
+               request.httpMethod = "GET"
+               request.httpBody = postData
+               let task = URLSession.shared.dataTask(with: request) { data, response, error in
+                 guard let data = data else {
+                   print(String(describing: error))
+                   semaphore.signal()
+                   return
+                 }
+                   do {
+                       posts = try JSONDecoder().decode(Array<Post>.self, from: data)
+                       
+
+                       
+                    
+                       
+                       
+                   } catch let err {
+                       print(err)
+                   }
+                 //print(String(data: data, encoding: .utf8)!)
+                 semaphore.signal()
+               }
+
+               task.resume()
+               semaphore.wait()
+               return posts
 
     }
     func GetAllPosts() -> Array<Post>{
@@ -96,7 +103,6 @@ class PostViewModel:ObservableObject{
         var request = URLRequest(url: URL(string: hostAdresse+"/getAllPosts/" + UserDefaults.standard.string(forKey: "_id")!)!,timeoutInterval: Double.infinity)
                    request.httpMethod = "GET"
                    request.httpBody = postData
-        print(request)
                    let task = URLSession.shared.dataTask(with: request) { data, response, error in
                      guard let data = data else {
                        print(String(describing: error))

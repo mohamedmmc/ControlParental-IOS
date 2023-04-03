@@ -14,8 +14,6 @@ class ProfilePostsViewController: UIViewController, UITableViewDelegate, UITable
     
     @IBOutlet weak var profileImage2: UIImageView!
     @IBOutlet weak var fullName2: UILabel!
-    @IBOutlet weak var followersCount: UILabel!
-    @IBOutlet weak var followingcount: UILabel!
     @IBOutlet weak var postCount: UILabel!
     @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var PostsTable: UITableView!
@@ -26,10 +24,13 @@ class ProfilePostsViewController: UIViewController, UITableViewDelegate, UITable
     @IBOutlet weak var Upload: UIButton!
     @IBOutlet weak var UploadImage: UITextField!
     
+    @IBAction func logOut(_ sender: UIButton) {
+        UserDefaults.standard.removeObject(forKey: "_id")
+        performSegue(withIdentifier: "logoutt", sender: nil)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         
- 
         //Pop up View
         ViewPopUp.layer.cornerRadius = 20
         ViewPopUp.isHidden = true
@@ -38,16 +39,7 @@ class ProfilePostsViewController: UIViewController, UITableViewDelegate, UITable
         Upload.setTitle("", for: .normal)
         PostsTable.dataSource = self
         PostsTable.delegate = self
-        fullName.text = UserDefaults.standard.string(forKey: "FullName")
-        fullName2.text = UserDefaults.standard.string(forKey: "FullName")
-        userName.text = "@ " + (UserDefaults.standard.string(forKey: "username") ?? "Not provied")
-        if(UserDefaults.standard.string(forKey: "ProfilePic") ?? "").isEmpty {
-            ProfileImage.image = UIImage(named: "user")
-            profileImage2.image = UIImage(named: "user")
-        }else{
-            ProfileImage.imageFromServerURL(urlString: UserDefaults.standard.string(forKey: "ProfilePic")!)
-            profileImage2.imageFromServerURL(urlString: UserDefaults.standard.string(forKey: "ProfilePic")!)
-        }
+        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -65,32 +57,30 @@ class ProfilePostsViewController: UIViewController, UITableViewDelegate, UITable
         
         title.text = post.title
         description.text = post.description
-        
-        let url = URL(string: post.image!)
-        let data = try? Data(contentsOf: url!)
-
-        if let imageData = data {
-            let image = UIImage(data: imageData)
-            imageView.image = image
+        if (post.image == "no image"){
+            imageView.image = UIImage(named: "user")
+        } else{
+            imageView.imageFromServerURL(urlString: post.image!)
         }
         return cell!
     }
     
-  
-    override func viewDidAppear(_ animated: Bool) {
-        
-        postViewModel.GetPost(id: "", onSuccess: {
-            //self.PostsTable.reloadData()
-            
-              
-        }, onFailure: {errorMessage in
-            print("error") }
-        )
-        
-        PostsTable.reloadData()
-
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.postViewModel.UserPosts = self.postViewModel.GetPost()
+        self.postCount.text = String(self.postViewModel.UserPosts.count )
+        fullName.text = UserDefaults.standard.string(forKey: "FullName")!
+        fullName2.text = UserDefaults.standard.string(forKey: "FullName")!
+        userName.text = "@ " + (UserDefaults.standard.string(forKey: "username") ?? "Not Proviedd")
+        if ((UserDefaults.standard.string(forKey: "ProfilePic") ?? "").isEmpty){
+            ProfileImage.image = UIImage(named: "user")
+            profileImage2.image = UIImage(named: "user")
+        }else{
+            ProfileImage.imageFromServerURL(urlString: UserDefaults.standard.string(forKey: "ProfilePic")!)
+            profileImage2.imageFromServerURL(urlString: UserDefaults.standard.string(forKey: "ProfilePic")!)
+        }
+        self.PostsTable.reloadData()
     }
-
     
     
 

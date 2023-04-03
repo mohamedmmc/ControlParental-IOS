@@ -13,7 +13,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
    
     
     var allposts = PostViewModel.shareInstance.GetAllPosts()
-    
+    @ObservedObject var postViewModel = PostViewModel()
     @IBOutlet weak var allPostsTable: UITableView!
     
     
@@ -46,34 +46,27 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         return cell!
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        self.navigationItem.setHidesBackButton(true, animated: true)
-        
-        allPostsTable.dataSource = self
-        allPostsTable.delegate = self
-        
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.allposts = self.postViewModel.GetAllPosts()
+        self.allPostsTable.reloadData()
     }
     
-    
-    
-    
-    
-    
-    
+    override func viewDidLoad() {
+        
+        super.viewDidLoad()
+  
+
+          // Hide the back button
+          navigationItem.hidesBackButton = true
+
+        
+
+          // Set up table view
+          allPostsTable.dataSource = self
+        allPostsTable.delegate = self
+
+        
+    }
 
 }
-
-
-
-
-
-
-
-
-    
-
-
-
-

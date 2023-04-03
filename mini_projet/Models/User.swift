@@ -24,6 +24,7 @@ struct User: Codable {
     let BirthDate:String?
     let Description:String?
     let otpReset:String?
+    let ProfilePic:String?
     
     enum CodingKeys: String, CodingKey {
       
@@ -40,6 +41,7 @@ struct User: Codable {
         case BirthDate
         case Description
         case otpReset
+        case ProfilePic
    
     }
     
@@ -47,7 +49,7 @@ struct User: Codable {
     
  
     
-    init(_id:String,email:String,mdp:String,FullName:String,confrimMdp:String,verified:Bool,otp:String,username:String,PhoneNumber:String,Gender:String,BirthDate:String,Description:String,otpReset:String)
+    init(_id:String,email:String,mdp:String,FullName:String,confrimMdp:String,verified:Bool,otp:String,username:String,PhoneNumber:String,Gender:String,BirthDate:String,Description:String,otpReset:String, ProfilePic:String)
     {
         self._id=_id
         self.email=email
@@ -62,6 +64,7 @@ struct User: Codable {
         self.BirthDate=BirthDate
         self.Description=Description
         self.otpReset=otpReset
+        self.ProfilePic=ProfilePic
         
      
     }

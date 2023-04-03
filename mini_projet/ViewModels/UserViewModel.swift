@@ -28,6 +28,8 @@ class UserViewModel:ObservableObject{
                 let defaults = UserDefaults.standard
                 defaults.set(data._id, forKey: "_id")
                 defaults.set(data.FullName, forKey: "FullName")
+                    defaults.set(data.username, forKey: "username")
+                    defaults.set(data.ProfilePic, forKey: "ProfilePic")
                 onSuccess()
                     
                 print(data)
@@ -202,7 +204,7 @@ class UserViewModel:ObservableObject{
     
     
     func findUserById(id: String) -> User {
-        var user = User(_id: "", email: "", mdp: "", FullName: "", confrimMdp: "", verified: false, otp: "", username: "", PhoneNumber: "", Gender: "", BirthDate: "", Description: "", otpReset: "")
+        var user = User(_id: "", email: "", mdp: "", FullName: "", confrimMdp: "", verified: false, otp: "", username: "", PhoneNumber: "", Gender: "", BirthDate: "", Description: "", otpReset: "",ProfilePic: "")
         var semaphore = DispatchSemaphore (value: 0)
 
         var request = URLRequest(url: URL(string: hostAdresse+"/MiniProjet/"+id)!,timeoutInterval: Double.infinity)

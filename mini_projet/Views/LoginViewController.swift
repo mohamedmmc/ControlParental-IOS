@@ -35,8 +35,7 @@ class LoginViewController: UIViewController {
         let Email=EmailTextField.text!;
         let Password=PasswordTextField.text!;
         
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let Home = storyboard.instantiateViewController(identifier: "Home")
+   
 
         let emailPattern = #"^\S+@\S+\.\S+$"#
         let isEmail = Email.range(of: emailPattern,options: .regularExpression )
@@ -52,11 +51,10 @@ class LoginViewController: UIViewController {
        
             UserViewModel().Login(email:Email, password: Password , onSuccess: {
                 
-                
-                let defaults = UserDefaults.standard
-                let userid = defaults.string(forKey:"_id" )
-                let username = defaults.string(forKey: "FullName")         
-                self.navigationController?.pushViewController(Home, animated: false)
+                DispatchQueue.main.async {
+                    self.performSegue(withIdentifier: "connect", sender: nil)
+                }
+          
 
                 },
                                 

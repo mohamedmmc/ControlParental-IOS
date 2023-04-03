@@ -63,11 +63,20 @@ class AddPostViewController: UIViewController, UIImagePickerControllerDelegate, 
             // Inputs are valid, proceed with sending the request to the server
             postViewModel.AddPost(title: titleField.text!, description: descriptionField.text!,photo: picker_image! , onSuccess: {
                 
-                
-            }, onFailure: {errorMessage in
-                print("error") }
+                DispatchQueue.main.async {
+                    self.navigationController?.popViewController(animated: true)
+
+                }            }, onFailure: {errorMessage in
+                DispatchQueue.main.async {
+                    self.navigationController?.popViewController(animated: true)
+
+                }
+            }
             )
-            self.navigationController?.popViewController(animated: true)
+            DispatchQueue.main.async {
+                self.navigationController?.popViewController(animated: true)
+
+            }
         }
            
             
