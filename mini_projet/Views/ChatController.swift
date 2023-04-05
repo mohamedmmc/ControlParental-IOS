@@ -7,10 +7,29 @@
 
 import SwiftUI
 import SendbirdUIKit
+import SendbirdChatSDK
 
 
 
-class ChannelListViewController: UIViewController {
+class ChannelListViewController: SBUGroupChannelListViewController {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.headerComponent?.rightBarButton = nil
+        self.headerComponent?.leftBarButton = nil
+        
+        let listQuery = SBDGroupChannel.createMyGroupChannelListQuery()
+        
+        listQuery?.userIdsExactFilter = [UserDefaults.standard.string(forKey: "_id")!]
+        listQuery?.loadNextPage(completionHandler: { (groupChannels, error) in
+         //  print("groupe channel : ",groupChannels, "erreur : ",error)
+            guard error == nil else {return}
+        })
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+       
+    }
+    /*
     // 3a. Create a UINavigationController with the Sendbird channel list
     //     view controller as it's root view controller
     @objc
@@ -42,6 +61,6 @@ struct ChannelListViewContainer: UIViewControllerRepresentable {
     
     // 4c. Add the required updateUIViewController function
     func updateUIViewController(_ uiViewController: ChannelListViewController, context: Context) {
-    }
-    }
+    }*/
+}
 

@@ -9,46 +9,63 @@ import UIKit
 import SwiftUI
 import Foundation
 
-class ProfileViewController: UIViewController {
+class ProfileViewController: UIViewController , UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     @ObservedObject var userViewModel=UserViewModel()
     
     
+    @IBOutlet weak var imageview: UIImageView!
     @IBOutlet weak var UsernameTextField: UITextField!
     @IBOutlet weak var PhoneTextField: UITextField!
     @IBOutlet weak var Gender: UISegmentedControl!
     @IBOutlet weak var BirthDate: UIDatePicker!
     @IBOutlet weak var DescriptionTextField: UITextField!
+    let dateFormatter = DateFormatter()
+    var picker_image: UIImage?
+    @IBAction func pick(_ sender: Any) {
+        let myPickerControllerGallery = UIImagePickerController()
+                      myPickerControllerGallery.delegate = self
+                      myPickerControllerGallery.sourceType = UIImagePickerController.SourceType.photoLibrary
+                      myPickerControllerGallery.allowsEditing = true
+                      self.present(myPickerControllerGallery, animated: true, completion: nil)
+    }
     
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+            guard let editedimage = info[.editedImage] as? UIImage else  {
+                return
+            }
+            picker_image = editedimage
+                  imageview.image = editedimage
+                  
+            self.dismiss(animated: true, completion: nil)
+        }
     
     override func viewDidLoad() {
+        dateFormatter.dateFormat = "dd-MM-yyyy"
         super.viewDidLoad()
         self.navigationItem.setHidesBackButton(true, animated: true)
-
-        /*let defaults = UserDefaults.standard
-        let _id = defaults.object(forKey: "_id") as! String
-        userViewModel.GetById(ID:_id )
-        
-        
-        let username = defaults.object(forKey: "username") as! String
-        let PhoneNumber = defaults.object(forKey: "PhoneNumber") as! String
-        let Gender = defaults.object(forKey: "Gender") as! String
-        let BirthDatee = defaults.object(forKey: "BirthDate") as! String
-        let Description = defaults.object(forKey: "Description")as! String
-    
-        
-        UsernameTextField.text = username;
-        PhoneTextField.text = PhoneNumber;
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd'-'MM'-'yyyy"
-        let date = dateFormatter.date(from: BirthDatee)
-        BirthDate.date = date!;
-        DescriptionTextField.text = Description;*/
-        
-        
-        
-        
-        
+        if !((UserDefaults.standard.string(forKey: "username") ?? "").isEmpty) {
+            UsernameTextField.text = UserDefaults.standard.string(forKey: "username")
+        }
+        if !((UserDefaults.standard.string(forKey: "PhoneNumber") ?? "").isEmpty) {
+            PhoneTextField.text = UserDefaults.standard.string(forKey: "PhoneNumber")
+        }
+        if !((UserDefaults.standard.string(forKey: "Description") ?? "").isEmpty) {
+            DescriptionTextField.text = UserDefaults.standard.string(forKey: "Description")
+        }
+        if !((UserDefaults.standard.string(forKey: "Gender") ?? "").isEmpty) {
+            if (UserDefaults.standard.string(forKey: "Gender") == "Male"){
+                Gender.selectedSegmentIndex = 0
+            } else {
+                Gender.selectedSegmentIndex = 1
+            }
+        }
+        if !((UserDefaults.standard.string(forKey: "BirthDate") ?? "").isEmpty) {
+            if let birthDate = dateFormatter.date(from: UserDefaults.standard.string(forKey: "BirthDate")! ) {
+                // Set the date picker's date to the birthDate
+                BirthDate.date = birthDate
+            }
+        }
     }
     
 

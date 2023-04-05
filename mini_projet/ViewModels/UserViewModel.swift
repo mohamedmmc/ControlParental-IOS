@@ -30,6 +30,10 @@ class UserViewModel:ObservableObject{
                 defaults.set(data.FullName, forKey: "FullName")
                     defaults.set(data.username, forKey: "username")
                     defaults.set(data.ProfilePic, forKey: "ProfilePic")
+                    defaults.set(data.PhoneNumber, forKey: "PhoneNumber")
+                    defaults.set(data.Description, forKey: "Description")
+                    defaults.set(data.Gender, forKey: "Gender")
+                    defaults.set(data.BirthDate, forKey: "BirthDate")
                 onSuccess()
                     
                 print(data)
@@ -56,8 +60,14 @@ class UserViewModel:ObservableObject{
                     
                 case .success(let data): print("Login successful")
                 let defaults = UserDefaults.standard
-                defaults.set(data._id, forKey: "_id")
-                defaults.set(data.FullName, forKey: "FullName")
+                    defaults.set(data._id, forKey: "_id")
+                    defaults.set(data.FullName, forKey: "FullName")
+                        defaults.set(data.username, forKey: "username")
+                        defaults.set(data.ProfilePic, forKey: "ProfilePic")
+                        defaults.set(data.PhoneNumber, forKey: "PhoneNumber")
+                        defaults.set(data.Description, forKey: "Description")
+                        defaults.set(data.Gender, forKey: "Gender")
+                        defaults.set(data.BirthDate, forKey: "BirthDate")
                 onSuccess()
                     
                 print(data)
@@ -87,8 +97,14 @@ class UserViewModel:ObservableObject{
                 case .success(let data): print("Registeration successful")
                     let defaults = UserDefaults.standard
                     
-                    defaults.set(data.email, forKey: "userEmail")
                     defaults.set(data._id, forKey: "_id")
+                    defaults.set(data.FullName, forKey: "FullName")
+                        defaults.set(data.username, forKey: "username")
+                        defaults.set(data.ProfilePic, forKey: "ProfilePic")
+                        defaults.set(data.PhoneNumber, forKey: "PhoneNumber")
+                        defaults.set(data.Description, forKey: "Description")
+                        defaults.set(data.Gender, forKey: "Gender")
+                        defaults.set(data.BirthDate, forKey: "BirthDate")
                     onSuccess()
                                         
                 case .failure(let err):
@@ -188,11 +204,14 @@ class UserViewModel:ObservableObject{
                 guard let data = response.value else { return }
                 do {
                     let defaults = UserDefaults.standard
-                    defaults.set(data.username, forKey: "username")
-                    defaults.set(data.PhoneNumber, forKey: "PhoneNumber")
-                    defaults.set(data.Gender, forKey: "Gender")
-                    defaults.set(data.BirthDate, forKey: "BirthDate")
-                    defaults.set(data.Description, forKey: "Description")
+                    defaults.set(data._id, forKey: "_id")
+                    defaults.set(data.FullName, forKey: "FullName")
+                        defaults.set(data.username, forKey: "username")
+                        defaults.set(data.ProfilePic, forKey: "ProfilePic")
+                        defaults.set(data.PhoneNumber, forKey: "PhoneNumber")
+                        defaults.set(data.Description, forKey: "Description")
+                        defaults.set(data.Gender, forKey: "Gender")
+                        defaults.set(data.BirthDate, forKey: "BirthDate")
             
                     
                     print(data)
@@ -218,7 +237,15 @@ class UserViewModel:ObservableObject{
           }
             do {
                             user = try JSONDecoder().decode(User.self, from: data)
-                            //print(user._id)
+                let defaults = UserDefaults.standard
+                defaults.set(user._id, forKey: "_id")
+                defaults.set(user.FullName, forKey: "FullName")
+                    defaults.set(user.username, forKey: "username")
+                    defaults.set(user.ProfilePic, forKey: "ProfilePic")
+                    defaults.set(user.PhoneNumber, forKey: "PhoneNumber")
+                    defaults.set(user.Description, forKey: "Description")
+                    defaults.set(user.Gender, forKey: "Gender")
+                    defaults.set(user.BirthDate, forKey: "BirthDate")
                             
                         } catch let err {
                             print(err)
@@ -244,11 +271,14 @@ class UserViewModel:ObservableObject{
                    case .success(_): guard let data = response.value else { return }
                        do {
                            let defaults = UserDefaults.standard
-                           defaults.set(data.username, forKey: "username")
-                           defaults.set(data.PhoneNumber, forKey: "PhoneNumber")
-                           defaults.set(data.Gender, forKey: "Gender")
-                           defaults.set(data.BirthDate, forKey: "BirthDate")
-                           defaults.set(data.Description, forKey: "Description")
+                           defaults.set(data._id, forKey: "_id")
+                           defaults.set(data.FullName, forKey: "FullName")
+                               defaults.set(data.username, forKey: "username")
+                               defaults.set(data.ProfilePic, forKey: "ProfilePic")
+                               defaults.set(data.PhoneNumber, forKey: "PhoneNumber")
+                               defaults.set(data.Description, forKey: "Description")
+                               defaults.set(data.Gender, forKey: "Gender")
+                               defaults.set(data.BirthDate, forKey: "BirthDate")
                    
                            
 

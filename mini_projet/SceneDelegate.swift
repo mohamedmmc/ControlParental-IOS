@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import SendbirdUIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -29,7 +29,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let window = self.window else { return }
         window.makeKeyAndVisible()
         if !( UserDefaults.standard.string(forKey: "_id") ?? "").isEmpty {
-            
+            SBUGlobals.currentUser = SBUUser(userId: UserDefaults.standard.string(forKey: "_id")!)
             let homeVC: TabBarController = storyboard.instantiateViewController(withIdentifier: "Home") as! TabBarController
             self.window?.rootViewController = homeVC
         }

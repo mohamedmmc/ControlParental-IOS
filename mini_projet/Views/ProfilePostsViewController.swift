@@ -28,6 +28,9 @@ class ProfilePostsViewController: UIViewController, UITableViewDelegate, UITable
         UserDefaults.standard.removeObject(forKey: "_id")
         performSegue(withIdentifier: "logoutt", sender: nil)
     }
+    @IBAction func updateProfil(_ sender: Any) {
+        performSegue(withIdentifier: "updateProfil", sender: nil)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         
