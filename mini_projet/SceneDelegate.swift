@@ -18,6 +18,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let _ = (scene as? UIWindowScene) else { return }
+    
         self.loadBaseController()
         
 
@@ -28,11 +29,23 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         guard let window = self.window else { return }
         window.makeKeyAndVisible()
-        if !( UserDefaults.standard.string(forKey: "_id") ?? "").isEmpty {
-            SBUGlobals.currentUser = SBUUser(userId: UserDefaults.standard.string(forKey: "_id")!)
-            let homeVC: TabBarController = storyboard.instantiateViewController(withIdentifier: "Home") as! TabBarController
-            self.window?.rootViewController = homeVC
+        if let defaults = UserDefaults.standard.dictionaryRepresentation() as? [String:Any] {
+            for (key, value) in defaults {
+                print("\(key) = \(value)")
+            }
         }
+            if !(UserDefaults.standard.string(forKey: "_id") ?? "").isEmpty {
+                if !(UserDefaults.standard.bool(forKey: "verified")) {
+                    UserDefaults.standard.set(false, forKey: "toHome")
+                    let sendOTPEmailVC = storyboard.instantiateViewController(withIdentifier: "EmailOTP")
+                    self.window?.rootViewController = sendOTPEmailVC
+                } else {
+                    UserDefaults.standard.set(true, forKey: "toHome")
+                    SBUGlobals.currentUser = SBUUser(userId: UserDefaults.standard.string(forKey: "_id")!)
+                    let homeVC = storyboard.instantiateViewController(withIdentifier: "Home") as! TabBarController
+                    self.window?.rootViewController = homeVC
+                }
+            }
         self.window?.makeKeyAndVisible()
     }
     func sceneDidDisconnect(_ scene: UIScene) {

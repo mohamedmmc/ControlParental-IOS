@@ -7,7 +7,7 @@
 
 import Foundation
 import Alamofire
-
+import SendbirdUIKit
 class UserViewModel:ObservableObject{
     static let shareInstance = UserViewModel()
     
@@ -27,6 +27,7 @@ class UserViewModel:ObservableObject{
                 case .success(let data): print("Login successful")
                     let defaults = UserDefaults.standard
                     defaults.set(data._id, forKey: "_id")
+                    defaults.set(data.verified, forKey: "verified")
                     defaults.set(data.FullName, forKey: "FullName")
                     defaults.set(data.username, forKey: "username")
                     defaults.set(data.ProfilePic, forKey: "ProfilePic")
@@ -34,6 +35,7 @@ class UserViewModel:ObservableObject{
                     defaults.set(data.Description, forKey: "Description")
                     defaults.set(data.Gender, forKey: "Gender")
                     defaults.set(data.BirthDate, forKey: "BirthDate")
+                    SBUGlobals.currentUser = SBUUser(userId: data._id!)
                     onSuccess()
                     
                     
@@ -58,6 +60,7 @@ class UserViewModel:ObservableObject{
                 case .success(let data): print("Login successful")
                     let defaults = UserDefaults.standard
                     defaults.set(data._id, forKey: "_id")
+                    defaults.set(data.verified, forKey: "verified")
                     defaults.set(data.FullName, forKey: "FullName")
                     defaults.set(data.username, forKey: "username")
                     defaults.set(data.ProfilePic, forKey: "ProfilePic")
@@ -65,6 +68,7 @@ class UserViewModel:ObservableObject{
                     defaults.set(data.Description, forKey: "Description")
                     defaults.set(data.Gender, forKey: "Gender")
                     defaults.set(data.BirthDate, forKey: "BirthDate")
+                    SBUGlobals.currentUser = SBUUser(userId: UserDefaults.standard.string(forKey: "_id")!)
                     onSuccess()
                     
                     
@@ -92,6 +96,7 @@ class UserViewModel:ObservableObject{
                     let defaults = UserDefaults.standard
                     
                     defaults.set(data._id, forKey: "_id")
+                    defaults.set(data.verified, forKey: "verified")
                     defaults.set(data.email, forKey: "email")
                     defaults.set(data.FullName, forKey: "FullName")
                     defaults.set(data.username, forKey: "username")
@@ -100,6 +105,8 @@ class UserViewModel:ObservableObject{
                     defaults.set(data.Description, forKey: "Description")
                     defaults.set(data.Gender, forKey: "Gender")
                     defaults.set(data.BirthDate, forKey: "BirthDate")
+                    defaults.set(true, forKey: "toHome")
+                    SBUGlobals.currentUser = SBUUser(userId: UserDefaults.standard.string(forKey: "_id")!)
                     onSuccess()
                     
                 case .failure(let err):
@@ -126,6 +133,33 @@ class UserViewModel:ObservableObject{
                 case .success(let data): print("Verification successful")
                     let defaults = UserDefaults.standard
                     defaults.set(data.email, forKey: "email")
+                    defaults.set(data.verified, forKey: "verified")
+                    onSuccess()
+                    
+                case .failure(let err):
+                    onFailure(err.localizedDescription)
+                    print("Verification failed",err)
+                    
+                    
+                    return
+                }
+                
+                
+            }
+    }
+    
+    func resendOTP(id:String,onSuccess: @escaping () -> Void ,onFailure: @escaping (_ errorMessage: String) -> Void)
+    {
+        AF.request(hostAdresse+"/MiniProjet//resend/OTP" , method: .post, parameters: ["id":id] ,encoding: JSONEncoding.default)
+            .validate()
+            .responseDecodable(of: User.self) {
+                (response) in
+                switch response.result {
+                    
+                case .success(let data): print("Verification successful")
+                    let defaults = UserDefaults.standard
+                    defaults.set(data.email, forKey: "email")
+                    defaults.set(data.verified, forKey: "verified")
                     onSuccess()
                     
                 case .failure(let err):
@@ -200,6 +234,7 @@ class UserViewModel:ObservableObject{
                 do {
                     let defaults = UserDefaults.standard
                     defaults.set(data._id, forKey: "_id")
+                    defaults.set(data.verified, forKey: "verified")
                     defaults.set(data.email, forKey: "email")
                     defaults.set(data.FullName, forKey: "FullName")
                     defaults.set(data.username, forKey: "username")
@@ -235,6 +270,7 @@ class UserViewModel:ObservableObject{
                 user = try JSONDecoder().decode(User.self, from: data)
                 let defaults = UserDefaults.standard
                 defaults.set(user._id, forKey: "_id")
+                defaults.set(user.verified, forKey: "verified")
                 defaults.set(user.email, forKey: "email")
                 defaults.set(user.FullName, forKey: "FullName")
                 defaults.set(user.username, forKey: "username")
@@ -281,20 +317,33 @@ class UserViewModel:ObservableObject{
                 
                 
             }, to: hostAdresse+"/MiniProjet/update/"+ID, method: .put) .responseDecodable(of: User.self) { response in
-                
-                guard let data = response.value else { return }
-                do {
-                    let defaults = UserDefaults.standard
-                    DispatchQueue.main.async {
-                        defaults.set(data.email, forKey: "email")
-                        defaults.set(data.username, forKey: "username")
-                        defaults.set(data.ProfilePic, forKey: "ProfilePic")
-                        defaults.set(data.PhoneNumber, forKey: "PhoneNumber")
-                        defaults.set(data.Description, forKey: "Description")
-                        defaults.set(data.Gender, forKey: "Gender")
-                        defaults.set(data.BirthDate, forKey: "BirthDate")
+                switch response.result {
+                    
+                case .success(let data):
+                    guard let data = response.value else { return }
+                    do {
+                        let defaults = UserDefaults.standard
+                        DispatchQueue.main.async {
+                            defaults.set(data.email, forKey: "email")
+                            defaults.set(data.verified, forKey: "verified")
+                            defaults.set(data.username, forKey: "username")
+                            defaults.set(data.ProfilePic, forKey: "ProfilePic")
+                            defaults.set(data.PhoneNumber, forKey: "PhoneNumber")
+                            defaults.set(data.Description, forKey: "Description")
+                            defaults.set(data.Gender, forKey: "Gender")
+                            defaults.set(data.BirthDate, forKey: "BirthDate")
+                        }
                     }
+                    onSuccess()
+                    
+                case .failure(let err):
+                    onFailure(err.localizedDescription)
+                    print("Password reset failed",err)
+                    
+                    
+                    return
                 }
+             
                 
             }
     }

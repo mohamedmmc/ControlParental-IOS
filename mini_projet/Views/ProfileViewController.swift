@@ -8,7 +8,6 @@
 import UIKit
 import SwiftUI
 import Foundation
-
 class ProfileViewController: UIViewController , UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     @ObservedObject var userViewModel=UserViewModel()
@@ -108,17 +107,18 @@ class ProfileViewController: UIViewController , UIImagePickerControllerDelegate,
                 
                 // Switch to the new view controller
                 DispatchQueue.main.async {
+                    
                     SendBirdApi().SendBirdUpdateProfil(user_id: _id!, nickname: Username!, profile_url: UserDefaults.standard.string(forKey: "ProfilePic")!)
-                   let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                    guard let tabBarController = storyboard.instantiateViewController(withIdentifier: "Home") as? UITabBarController else {
-                        return
+                    DispatchQueue.main.async {
+                        let name = Notification.Name("updateProfil")
+                        let notification = Notification(name: name)
+                        NotificationCenter.default.post(notification)
+                        if (UserDefaults.standard.bool(forKey: "toHome")){
+                            self.performSegue(withIdentifier: "homeSegue", sender: nil)
+                        }else{
+                            self.dismiss(animated: true)
+                        }
                     }
-
-                    let viewControllerToSelect = 3
-                    tabBarController.selectedIndex = viewControllerToSelect
-                    tabBarController.modalPresentationStyle = .fullScreen
-                    self.present(tabBarController, animated: true, completion: nil)
-                   
                 }
             
             

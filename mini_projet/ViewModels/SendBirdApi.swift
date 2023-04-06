@@ -19,7 +19,7 @@ class SendBirdApi  {
             "nickname": nickname,
             "profile_url": profile_url
         ]
-        guard let url = URL(string: apiUrl + "/v3/users"+user_id) else{
+        guard let url = URL(string: apiUrl + "/v3/users/"+user_id) else{
             return
         }
         var request = URLRequest(url: url)

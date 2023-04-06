@@ -52,7 +52,13 @@ class LoginViewController: UIViewController {
             UserViewModel().Login(email:Email, password: Password , onSuccess: {
                 
                 DispatchQueue.main.async {
-                    self.performSegue(withIdentifier: "connect", sender: nil)
+                    if(UserDefaults.standard.bool(forKey: "verified")){
+                        
+                        self.performSegue(withIdentifier: "connect", sender: nil)
+                    }else{
+                        self.performSegue(withIdentifier: "otpResend", sender: nil)
+                    }
+                    
                 }
           
 

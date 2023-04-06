@@ -46,13 +46,6 @@ class PostViewModel:ObservableObject{
 
             }
                   
-                
-                
-        
-    
-        
-    
-    
     func GetPost() -> Array<Post>{
         
             var posts = [Post]()

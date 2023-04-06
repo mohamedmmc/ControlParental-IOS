@@ -9,7 +9,8 @@ import UIKit
 import SwiftUI
 import Foundation
 import Lottie
-
+import SendbirdUIKit
+import SendBirdSDK
 class ProfilePostsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @ObservedObject var postViewModel = PostViewModel()
     
@@ -29,31 +30,38 @@ class ProfilePostsViewController: UIViewController, UITableViewDelegate, UITable
 
     @IBAction func logOut(_ sender: UIButton) {
         DispatchQueue.main.async {
-            UserDefaults.standard.removeObject(forKey: "_id")
-            UserDefaults.standard.removeObject(forKey: "email")
-            UserDefaults.standard.removeObject(forKey: "username")
-            UserDefaults.standard.removeObject(forKey: "ProfilePic")
-            UserDefaults.standard.removeObject(forKey: "FullName")
-            UserDefaults.standard.removeObject(forKey: "PhoneNumber")
-            UserDefaults.standard.removeObject(forKey: "Description")
-            UserDefaults.standard.removeObject(forKey: "Gender")
-            UserDefaults.standard.removeObject(forKey: "BirthDate")
-            self.performSegue(withIdentifier: "logoutt", sender: nil)
-        }
+               let domain = Bundle.main.bundleIdentifier!
+               UserDefaults.standard.removePersistentDomain(forName: domain)
+            SBDMain.clearCachedData(completionHandler: nil)
+                    SBDMain.disconnect(completionHandler: nil)
+               self.performSegue(withIdentifier: "logoutt", sender: nil)
+           }
     
     }
     @IBAction func updateProfil(_ sender: Any) {
         performSegue(withIdentifier: "updateProfil", sender: nil)
     }
-    override func viewDidLoad() {
-        if let defaults = UserDefaults.standard.dictionaryRepresentation() as? [String:Any] {
-            for (key, value) in defaults {
-                print("\(key) = \(value)")
+    @objc func profileUpdated(){
+            if (!(UserDefaults.standard.string(forKey: "ProfilePic") ?? "").isEmpty){
+                ProfileImage.imageFromServerURL(urlString: UserDefaults.standard.string(forKey: "ProfilePic")!)
+                profileImage2.imageFromServerURL(urlString: UserDefaults.standard.string(forKey: "ProfilePic")!)
+            }else{
+                ProfileImage.image = UIImage(named: "user")
+                profileImage2.image = UIImage(named: "user")
             }
+            if (!(UserDefaults.standard.string(forKey: "FullName") ?? "").isEmpty){
+                fullName.text = UserDefaults.standard.string(forKey: "FullName")!
+            }
+        if (!(UserDefaults.standard.string(forKey: "username") ?? "").isEmpty){
+            userName.text =  "@ " + (UserDefaults.standard.string(forKey: "username") ?? "Not Proviedd")
         }
+        }
+    override func viewDidLoad() {
+      
 
         super.viewDidLoad()
-        
+        let name = Notification.Name("updateProfil")
+        NotificationCenter.default.addObserver(self, selector: #selector(profileUpdated), name: name, object: nil)
         //Pop up View
         ViewPopUp.layer.cornerRadius = 20
         ViewPopUp.isHidden = true

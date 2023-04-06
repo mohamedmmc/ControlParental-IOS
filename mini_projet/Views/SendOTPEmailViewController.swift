@@ -18,7 +18,13 @@ class SendOTPEmailViewController: UIViewController {
     
 
     @IBAction func ContinueButton(_ sender: Any) {
-        
+        UserViewModel().resendOTP(id: UserDefaults.standard.string(forKey: "_id")!) {
+            print("email envoyé")
+            
+        } onFailure: { errorMessage in
+            print(errorMessage)
+        }
+
     }
     
 }
