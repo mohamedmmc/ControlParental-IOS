@@ -105,7 +105,7 @@ class LoginViewController: UIViewController {
         
         
         
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+       /* let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let Home = storyboard.instantiateViewController(identifier: "Home")
                GIDSignIn.sharedInstance.signIn(with: signInConfig, presenting: self) { user, error in
                    guard error == nil else { return}
@@ -128,7 +128,7 @@ class LoginViewController: UIViewController {
                                
                       })
                    }
-               }
+               }*/
  
     }
     

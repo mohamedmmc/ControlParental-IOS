@@ -60,6 +60,11 @@ class ProfileViewController: UIViewController , UIImagePickerControllerDelegate,
                 Gender.selectedSegmentIndex = 1
             }
         }
+        if ((UserDefaults.standard.string(forKey: "ProfilePic") ?? "").isEmpty){
+            imageview.image = UIImage(named: "user")
+        }else{
+            imageview.imageFromServerURL(urlString: UserDefaults.standard.string(forKey: "ProfilePic")!)
+        }
         if !((UserDefaults.standard.string(forKey: "BirthDate") ?? "").isEmpty) {
             if let birthDate = dateFormatter.date(from: UserDefaults.standard.string(forKey: "BirthDate")! ) {
                 // Set the date picker's date to the birthDate
@@ -97,14 +102,14 @@ class ProfileViewController: UIViewController , UIImagePickerControllerDelegate,
         else{
             
             let defaults = UserDefaults.standard
-            let _id = defaults.string(forKey: "_id") as! String
-            print(_id);
-            userViewModel.UpdateById(ID: _id, username: Username!, PhoneNumber: Phone!, Gender: Gender!, BirthDate: DateString, Description: Description!,    onSuccess: {
+            let _id = defaults.string(forKey: "_id")
+            userViewModel.UpdateById(ID: _id!, username: Username!, PhoneNumber: Phone!, Gender: Gender!, BirthDate: DateString, Description: Description!, photo: picker_image,    onSuccess: {
                 
                 
                 // Switch to the new view controller
                 DispatchQueue.main.async {
-                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                    SendBirdApi().SendBirdUpdateProfil(user_id: _id!, nickname: Username!, profile_url: UserDefaults.standard.string(forKey: "ProfilePic")!)
+                   let storyboard = UIStoryboard(name: "Main", bundle: nil)
                     guard let tabBarController = storyboard.instantiateViewController(withIdentifier: "Home") as? UITabBarController else {
                         return
                     }
@@ -113,6 +118,7 @@ class ProfileViewController: UIViewController , UIImagePickerControllerDelegate,
                     tabBarController.selectedIndex = viewControllerToSelect
                     tabBarController.modalPresentationStyle = .fullScreen
                     self.present(tabBarController, animated: true, completion: nil)
+                   
                 }
             
             

@@ -28,17 +28,17 @@
 		4A6362D729392F9800FDD927 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6362D629392F9800FDD927 /* PostTableViewCell.swift */; };
 		4A6362D9293A7ACD00FDD927 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6362D8293A7ACD00FDD927 /* Post.swift */; };
 		4A6362DB293A7B9B00FDD927 /* PostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6362DA293A7B9B00FDD927 /* PostViewModel.swift */; };
-		4AA54627293522A8000E0B3E /* ChatController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA54626293522A8000E0B3E /* ChatController.swift */; };
-		4AA5462A29353194000E0B3E /* SendbirdUIKit in Frameworks */ = {isa = PBXBuildFile; productRef = 4AA5462929353194000E0B3E /* SendbirdUIKit */; };
+		4AA54627293522A8000E0B3E /* ChannelListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA54626293522A8000E0B3E /* ChannelListViewController.swift */; };
 		4AAD9F63293E76FC0024ADCB /* ProfilePostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAD9F62293E76FC0024ADCB /* ProfilePostsViewController.swift */; };
 		4AB4DA3E295DF91200943BC7 /* AddPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB4DA3D295DF91200943BC7 /* AddPostViewController.swift */; };
 		4AE7BD2A2928462D008C952F /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4AE7BD292928462D008C952F /* Launch Screen.storyboard */; };
+		57CD903C29DE20EC0034E988 /* SendBirdApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57CD903B29DE20EC0034E988 /* SendBirdApi.swift */; };
 		57F7B50A29D9009E00869709 /* extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F7B50929D9009E00869709 /* extensions.swift */; };
-		E01DECAE9E4D2A7D98495688 /* Pods_mini_projet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8788214FCB507075666E9810 /* Pods_mini_projet.framework */; };
+		663B53F87F5B5C2E2B392931 /* Pods_mini_projet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1604B1DF2AD3A8717262356 /* Pods_mini_projet.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		28622A93645D8D76D097E871 /* Pods-mini_projet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mini_projet.release.xcconfig"; path = "Target Support Files/Pods-mini_projet/Pods-mini_projet.release.xcconfig"; sourceTree = "<group>"; };
+		3E38F49F3CCB1363A3D1D421 /* Pods-mini_projet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mini_projet.release.xcconfig"; path = "Target Support Files/Pods-mini_projet/Pods-mini_projet.release.xcconfig"; sourceTree = "<group>"; };
 		4A139D8C2937EF7900F0C7FD /* ChatUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatUIView.swift; sourceTree = "<group>"; };
 		4A1F71DA29252B4A0066782C /* mini_projet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mini_projet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A1F71DD29252B4A0066782C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -62,13 +62,14 @@
 		4A6362D629392F9800FDD927 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		4A6362D8293A7ACD00FDD927 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		4A6362DA293A7B9B00FDD927 /* PostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewModel.swift; sourceTree = "<group>"; };
-		4AA54626293522A8000E0B3E /* ChatController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatController.swift; sourceTree = "<group>"; };
+		4AA54626293522A8000E0B3E /* ChannelListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelListViewController.swift; sourceTree = "<group>"; };
 		4AAD9F62293E76FC0024ADCB /* ProfilePostsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePostsViewController.swift; sourceTree = "<group>"; };
 		4AB4DA3D295DF91200943BC7 /* AddPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPostViewController.swift; sourceTree = "<group>"; };
 		4AE7BD292928462D008C952F /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		57CD903B29DE20EC0034E988 /* SendBirdApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendBirdApi.swift; sourceTree = "<group>"; };
 		57F7B50929D9009E00869709 /* extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensions.swift; sourceTree = "<group>"; };
-		8788214FCB507075666E9810 /* Pods_mini_projet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_mini_projet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		9686F7254AE102BA12D951E7 /* Pods-mini_projet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mini_projet.debug.xcconfig"; path = "Target Support Files/Pods-mini_projet/Pods-mini_projet.debug.xcconfig"; sourceTree = "<group>"; };
+		B1604B1DF2AD3A8717262356 /* Pods_mini_projet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_mini_projet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E4783660E887A902DB6320B6 /* Pods-mini_projet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mini_projet.debug.xcconfig"; path = "Target Support Files/Pods-mini_projet/Pods-mini_projet.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,18 +77,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4AA5462A29353194000E0B3E /* SendbirdUIKit in Frameworks */,
-				E01DECAE9E4D2A7D98495688 /* Pods_mini_projet.framework in Frameworks */,
+				663B53F87F5B5C2E2B392931 /* Pods_mini_projet.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0C97F0993FA2B08097B53500 /* Frameworks */ = {
+		0B66F2922407C241C41BA3AB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				8788214FCB507075666E9810 /* Pods_mini_projet.framework */,
+				B1604B1DF2AD3A8717262356 /* Pods_mini_projet.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -95,8 +95,8 @@
 		119D4B0B309FAD4982970BD7 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				9686F7254AE102BA12D951E7 /* Pods-mini_projet.debug.xcconfig */,
-				28622A93645D8D76D097E871 /* Pods-mini_projet.release.xcconfig */,
+				E4783660E887A902DB6320B6 /* Pods-mini_projet.debug.xcconfig */,
+				3E38F49F3CCB1363A3D1D421 /* Pods-mini_projet.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -107,7 +107,7 @@
 				4A1F71DC29252B4A0066782C /* mini_projet */,
 				4A1F71DB29252B4A0066782C /* Products */,
 				119D4B0B309FAD4982970BD7 /* Pods */,
-				0C97F0993FA2B08097B53500 /* Frameworks */,
+				0B66F2922407C241C41BA3AB /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -150,6 +150,7 @@
 			children = (
 				4A54410C292936CF005A03A0 /* UserViewModel.swift */,
 				4A6362DA293A7B9B00FDD927 /* PostViewModel.swift */,
+				57CD903B29DE20EC0034E988 /* SendBirdApi.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -167,7 +168,7 @@
 				4A389339292C27F7003217C5 /* SendOTPEmailViewController.swift */,
 				4A3DB691292FFE3400E5225C /* ProfileViewController.swift */,
 				4A3B78042931306E00058725 /* FeedViewController.swift */,
-				4AA54626293522A8000E0B3E /* ChatController.swift */,
+				4AA54626293522A8000E0B3E /* ChannelListViewController.swift */,
 				4A139D8C2937EF7900F0C7FD /* ChatUIView.swift */,
 				4A6362D629392F9800FDD927 /* PostTableViewCell.swift */,
 				4A4D0EA2293D180700DC2572 /* TabBarController.swift */,
@@ -192,20 +193,17 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4A1F71EE29252B4A0066782C /* Build configuration list for PBXNativeTarget "mini_projet" */;
 			buildPhases = (
-				48FFE7ADAD8E0F3285680FB3 /* [CP] Check Pods Manifest.lock */,
+				BB52EAA7EF7AC8F90678DE42 /* [CP] Check Pods Manifest.lock */,
 				4A1F71D629252B4A0066782C /* Sources */,
 				4A1F71D729252B4A0066782C /* Frameworks */,
 				4A1F71D829252B4A0066782C /* Resources */,
-				4FD1FF084063ADD5FD130BE9 /* [CP] Embed Pods Frameworks */,
+				2AC9B1B29E344818AA449911 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = mini_projet;
-			packageProductDependencies = (
-				4AA5462929353194000E0B3E /* SendbirdUIKit */,
-			);
 			productName = mini_projet;
 			productReference = 4A1F71DA29252B4A0066782C /* mini_projet.app */;
 			productType = "com.apple.product-type.application";
@@ -237,9 +235,6 @@
 				Base,
 			);
 			mainGroup = 4A1F71D129252B4A0066782C;
-			packageReferences = (
-				4AA5462829353194000E0B3E /* XCRemoteSwiftPackageReference "sendbird-uikit-ios-spm" */,
-			);
 			productRefGroup = 4A1F71DB29252B4A0066782C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -264,7 +259,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		48FFE7ADAD8E0F3285680FB3 /* [CP] Check Pods Manifest.lock */ = {
+		2AC9B1B29E344818AA449911 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-mini_projet/Pods-mini_projet-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-mini_projet/Pods-mini_projet-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-mini_projet/Pods-mini_projet-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BB52EAA7EF7AC8F90678DE42 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -286,23 +298,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		4FD1FF084063ADD5FD130BE9 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-mini_projet/Pods-mini_projet-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-mini_projet/Pods-mini_projet-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-mini_projet/Pods-mini_projet-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -319,8 +314,9 @@
 				4A3DB692292FFE3400E5225C /* ProfileViewController.swift in Sources */,
 				4A389338292C257F003217C5 /* ResetPasswordViewController.swift in Sources */,
 				4A3B78052931306E00058725 /* FeedViewController.swift in Sources */,
+				57CD903C29DE20EC0034E988 /* SendBirdApi.swift in Sources */,
 				4A1F71E229252B4A0066782C /* ViewController.swift in Sources */,
-				4AA54627293522A8000E0B3E /* ChatController.swift in Sources */,
+				4AA54627293522A8000E0B3E /* ChannelListViewController.swift in Sources */,
 				4A54410F29293B8D005A03A0 /* User.swift in Sources */,
 				4A1F71DE29252B4A0066782C /* AppDelegate.swift in Sources */,
 				4A4D0EA3293D180700DC2572 /* TabBarController.swift in Sources */,
@@ -473,7 +469,7 @@
 		};
 		4A1F71EF29252B4A0066782C /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9686F7254AE102BA12D951E7 /* Pods-mini_projet.debug.xcconfig */;
+			baseConfigurationReference = E4783660E887A902DB6320B6 /* Pods-mini_projet.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -506,7 +502,7 @@
 		};
 		4A1F71F029252B4A0066782C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 28622A93645D8D76D097E871 /* Pods-mini_projet.release.xcconfig */;
+			baseConfigurationReference = 3E38F49F3CCB1363A3D1D421 /* Pods-mini_projet.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -559,25 +555,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		4AA5462829353194000E0B3E /* XCRemoteSwiftPackageReference "sendbird-uikit-ios-spm" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/sendbird/sendbird-uikit-ios-spm";
-			requirement = {
-				branch = main;
-				kind = branch;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		4AA5462929353194000E0B3E /* SendbirdUIKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 4AA5462829353194000E0B3E /* XCRemoteSwiftPackageReference "sendbird-uikit-ios-spm" */;
-			productName = SendbirdUIKit;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 4A1F71D229252B4A0066782C /* Project object */;
 }

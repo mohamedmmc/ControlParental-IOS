@@ -69,14 +69,4 @@ struct User: Codable {
      
     }
                 
-        }
-    
-
-
-
-
-
-
-
-
-
+}

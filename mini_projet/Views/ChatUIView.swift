@@ -4,7 +4,7 @@
 //
 //  Created by Mac Mini 5 on 30/11/2022.
 //
-
+/*
 import SwiftUI
 import SendbirdUIKit
 
@@ -49,4 +49,4 @@ struct ChatUIView: View {
         ChatUIView()
     }
  */
-
+*/

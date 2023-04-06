@@ -71,6 +71,7 @@ class InscriptionViewController: UIViewController {
         
        UserViewModel().register(email:EmailText!, mdp:Password!, FullName: FullName!, confrimMdp: RepeatPassword!,
             onSuccess: {
+           SendBirdApi().SendBirdCreateAccount(user_id: UserDefaults.standard.string(forKey: "_id")!, nickname: UserDefaults.standard.string(forKey: "FullName")!, profile_url:"")
            
            self.navigationController?.pushViewController(EmailOTP, animated: false)
            

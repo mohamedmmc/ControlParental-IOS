@@ -16,7 +16,6 @@ class EmailVerificationOTPViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(UserDefaults.standard.string(forKey: "userEmail"))
     }
     
 
@@ -44,7 +43,7 @@ class EmailVerificationOTPViewController: UIViewController {
          }
         
         let defaults = UserDefaults.standard
-        let em = defaults.string(forKey: "userEmail")
+        let em = defaults.string(forKey: "email")
         UserViewModel().verifyEmail(email:em! , otp: OTP!,
             onSuccess: {
 
@@ -61,7 +60,6 @@ class EmailVerificationOTPViewController: UIViewController {
             onFailure: {
             (errorMessage) in
             self.displayAlert(UserMessage:"Invalid OTP");
-                print(errorMessage)
                 
         })
         
