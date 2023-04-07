@@ -23,7 +23,7 @@ class ResetPasswordViewController: UIViewController {
         self.navigationItem.setHidesBackButton(true, animated: true)
     }
     
-    @IBAction func ResetPasswordButton(_ sender: Any) {
+    @IBAction func ResetPasswordButton(_ sender: UIButton) {
         
         let NewPassword=NewPasswordTextField.text;
         let ConfirmPassword=ConfirmPasswordTextField.text;

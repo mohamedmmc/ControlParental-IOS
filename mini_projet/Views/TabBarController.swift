@@ -14,11 +14,16 @@
 
 import UIKit
 import SendbirdUIKit
+import SendBirdSDK
 
-class TabBarController: UITabBarController {
-    
+class TabBarController: UITabBarController ,SBDChannelDelegate{
+    deinit {
+           SBDMain.removeChannelDelegate(forIdentifier: "Home")
+       }
     override func viewDidLoad() {
         super.viewDidLoad()
+        SBDMain.add(self as SBDChannelDelegate, identifier: "Home")
+
         delegate = self
         // Get references to your existing view controllers from the storyboard
         guard let profile = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "profileItem") as? ProfilePostsViewController,
@@ -28,6 +33,7 @@ class TabBarController: UITabBarController {
         
         // Create an instance of SBUGroupChannelListViewController
         let channelListVC = SBUGroupChannelListViewController()
+        
         channelListVC.navigationItem.hidesBackButton = true
         channelListVC.tabBarItem = UITabBarItem(title: "", image: UIImage(systemName: "text.bubble"), tag: 0)
         channelListVC.navigationItem.hidesBackButton = true
@@ -60,5 +66,19 @@ extension TabBarController: UITabBarControllerDelegate  {
         }
 
         return true
+    }
+}
+
+extension TabBarController {
+    func channel(_ sender: SBDBaseChannel, didCreateGroupChannel channel: SBDGroupChannel) {
+        
+        if channel.customType == "admin" {
+            channel.delete(completionHandler: { (error) in
+                if error != nil {
+                    // Handle error
+                }
+            })
+        }
+        
     }
 }
