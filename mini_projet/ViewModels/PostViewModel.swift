@@ -14,7 +14,7 @@ class PostViewModel:ObservableObject{
     @Published var UserPosts = [Post]()
 
     
-    let hostAdresse="http://localhost:9090"
+    let hostAdresse="https://aestetica.onrender.com"
     
     func AddPost(title:String,description:String, photo: UIImage, onSuccess: @escaping () -> Void ,onFailure: @escaping (_ errorMessage: String) -> Void)
     {

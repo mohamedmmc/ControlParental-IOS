@@ -38,7 +38,7 @@ class TabBarController: UITabBarController {
         let navigationController = UINavigationController(rootViewController: channelListVC)
 
         
-        
+        UserDefaults.standard.set(true, forKey: "connectedBool")
         // Set the view controllers for the tab bar controller
         viewControllers = [feedController,navigationController, profileController ]
     }

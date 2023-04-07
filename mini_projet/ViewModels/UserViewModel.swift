@@ -13,7 +13,7 @@ class UserViewModel:ObservableObject{
     
     
     @Published var VerificationEmail: String?
-    let hostAdresse="http://localhost:9090"
+    let hostAdresse="https://aestetica.onrender.com"
     
     
     func Login (email:String,password:String,onSuccess: @escaping () -> Void ,onFailure: @escaping (_ errorMessage: String) -> Void){
@@ -105,7 +105,6 @@ class UserViewModel:ObservableObject{
                     defaults.set(data.Description, forKey: "Description")
                     defaults.set(data.Gender, forKey: "Gender")
                     defaults.set(data.BirthDate, forKey: "BirthDate")
-                    defaults.set(true, forKey: "toHome")
                     SBUGlobals.currentUser = SBUUser(userId: UserDefaults.standard.string(forKey: "_id")!)
                     onSuccess()
                     

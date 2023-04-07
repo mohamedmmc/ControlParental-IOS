@@ -30,12 +30,27 @@ class ProfilePostsViewController: UIViewController, UITableViewDelegate, UITable
 
     @IBAction func logOut(_ sender: UIButton) {
         DispatchQueue.main.async {
-               let domain = Bundle.main.bundleIdentifier!
-               UserDefaults.standard.removePersistentDomain(forName: domain)
-            SBDMain.clearCachedData(completionHandler: nil)
-                    SBDMain.disconnect(completionHandler: nil)
-               self.performSegue(withIdentifier: "logoutt", sender: nil)
-           }
+              let defaults = UserDefaults.standard
+              defaults.removeObject(forKey: "_id")
+              defaults.removeObject(forKey: "verified")
+              defaults.removeObject(forKey: "email")
+              defaults.removeObject(forKey: "FullName")
+              defaults.removeObject(forKey: "username")
+              defaults.removeObject(forKey: "ProfilePic")
+              defaults.removeObject(forKey: "PhoneNumber")
+              defaults.removeObject(forKey: "Description")
+              defaults.removeObject(forKey: "Gender")
+              defaults.removeObject(forKey: "BirthDate")
+              defaults.set(false, forKey: "connectedBool")
+            defaults.synchronize() // persist the changes to disk
+
+              SBDMain.clearCachedData(completionHandler: nil)
+              SBDMain.disconnect(completionHandler: nil)
+              
+              DispatchQueue.main.async {
+                  self.performSegue(withIdentifier: "logoutt", sender: nil)
+              }
+          }
     
     }
     @IBAction func updateProfil(_ sender: Any) {

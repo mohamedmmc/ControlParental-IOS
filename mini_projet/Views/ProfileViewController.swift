@@ -113,7 +113,7 @@ class ProfileViewController: UIViewController , UIImagePickerControllerDelegate,
                         let name = Notification.Name("updateProfil")
                         let notification = Notification(name: name)
                         NotificationCenter.default.post(notification)
-                        if (UserDefaults.standard.bool(forKey: "toHome")){
+                        if !(UserDefaults.standard.bool(forKey: "connectedBool")){
                             self.performSegue(withIdentifier: "homeSegue", sender: nil)
                         }else{
                             self.dismiss(animated: true)

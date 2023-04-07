@@ -16,7 +16,10 @@ class SendOTPEmailViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-
+    @IBAction func menuButton(_ sender: Any) {
+        performSegue(withIdentifier: "mainMenuSegue", sender: nil)
+    }
+    
     @IBAction func ContinueButton(_ sender: Any) {
         UserViewModel().resendOTP(id: UserDefaults.standard.string(forKey: "_id")!) {
             print("email envoyé")

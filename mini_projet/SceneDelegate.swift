@@ -36,11 +36,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
             if !(UserDefaults.standard.string(forKey: "_id") ?? "").isEmpty {
                 if !(UserDefaults.standard.bool(forKey: "verified")) {
-                    UserDefaults.standard.set(false, forKey: "toHome")
                     let sendOTPEmailVC = storyboard.instantiateViewController(withIdentifier: "EmailOTP")
                     self.window?.rootViewController = sendOTPEmailVC
                 } else {
-                    UserDefaults.standard.set(true, forKey: "toHome")
                     SBUGlobals.currentUser = SBUUser(userId: UserDefaults.standard.string(forKey: "_id")!)
                     let homeVC = storyboard.instantiateViewController(withIdentifier: "Home") as! TabBarController
                     self.window?.rootViewController = homeVC
