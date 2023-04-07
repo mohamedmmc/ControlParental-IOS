@@ -52,15 +52,23 @@ class ResetPasswordViewController: UIViewController {
         
         let defaults = UserDefaults.standard
         let em = defaults.string(forKey: "email")
+        sender.isUserInteractionEnabled = false
+        let activityIndicator = UIActivityIndicatorView(style: .white)
+        activityIndicator.center = CGPoint(x: sender.bounds.size.width / 2, y: sender.bounds.size.height / 2)
+        sender.addSubview(activityIndicator)
+        activityIndicator.startAnimating()
         UserViewModel().resetPassword(email:em as! String ,mdp:NewPassword!, otpReset: OTP!,
             onSuccess: {
-            
+            activityIndicator.stopAnimating()
+            sender.isUserInteractionEnabled = true
             self.navigationController?.pushViewController(Login, animated: false)
             
             },
                             
             onFailure: {
             (errorMessage) in
+            activityIndicator.stopAnimating()
+            sender.isUserInteractionEnabled = true
             DispatchQueue.main.async {
                 self.displayAlert(UserMessage:"Invalid OTP");
                     print(errorMessage)

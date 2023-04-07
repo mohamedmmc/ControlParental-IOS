@@ -20,11 +20,19 @@ class SendOTPEmailViewController: UIViewController {
         performSegue(withIdentifier: "mainMenuSegue", sender: nil)
     }
     
-    @IBAction func ContinueButton(_ sender: Any) {
+    @IBAction func ContinueButton(_ sender: UIButton) {
+        sender.isUserInteractionEnabled = false
+        let activityIndicator = UIActivityIndicatorView(style: .white)
+        activityIndicator.center = CGPoint(x: sender.bounds.size.width / 2, y: sender.bounds.size.height / 2)
+        sender.addSubview(activityIndicator)
+        activityIndicator.startAnimating()
         UserViewModel().resendOTP(id: UserDefaults.standard.string(forKey: "_id")!) {
             print("email envoyé")
-            
+            activityIndicator.stopAnimating()
+            sender.isUserInteractionEnabled = true
         } onFailure: { errorMessage in
+            activityIndicator.stopAnimating()
+            sender.isUserInteractionEnabled = true
             print(errorMessage)
         }
 

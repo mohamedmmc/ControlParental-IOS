@@ -74,7 +74,9 @@ class ProfileViewController: UIViewController , UIImagePickerControllerDelegate,
     
 
     @IBAction func SaveButton(_ sender: UIButton) {
+       
         
+
         
         let Username=UsernameTextField.text;
         let Phone=PhoneTextField.text;
@@ -87,19 +89,20 @@ class ProfileViewController: UIViewController , UIImagePickerControllerDelegate,
         formatter.dateFormat = "dd-MM-yyyy"
         let DateString = formatter.string(from: Date())
 
- 
-    
         if( Username!.isEmpty || Phone!.isEmpty )
         {
             //display alert
-            
             displayAlert(UserMessage:"All fields are required");
             return;
     
         }
         
         else{
-            
+            sender.isUserInteractionEnabled = false
+            let activityIndicator = UIActivityIndicatorView(style: .white)
+            activityIndicator.center = CGPoint(x: sender.bounds.size.width / 2, y: sender.bounds.size.height / 2)
+            sender.addSubview(activityIndicator)
+            activityIndicator.startAnimating()
             let defaults = UserDefaults.standard
             let _id = defaults.string(forKey: "_id")
             userViewModel.UpdateById(ID: _id!, username: Username!, PhoneNumber: Phone!, Gender: Gender!, BirthDate: DateString, Description: Description!, photo: picker_image,    onSuccess: {
@@ -113,6 +116,8 @@ class ProfileViewController: UIViewController , UIImagePickerControllerDelegate,
                         let name = Notification.Name("updateProfil")
                         let notification = Notification(name: name)
                         NotificationCenter.default.post(notification)
+                                 activityIndicator.stopAnimating()
+                                 sender.isUserInteractionEnabled = true
                         if !(UserDefaults.standard.bool(forKey: "connectedBool")){
                             self.performSegue(withIdentifier: "homeSegue", sender: nil)
                         }else{
@@ -128,11 +133,12 @@ class ProfileViewController: UIViewController , UIImagePickerControllerDelegate,
             (errorMessage) in
             self.displayAlert(UserMessage:"Something went wrong");
                 print(errorMessage)
+                // Stop the activity indicator and enable the button
+                         activityIndicator.stopAnimating()
+                         sender.isUserInteractionEnabled = true
                 
         })
         }
-
-        
     }
     
     

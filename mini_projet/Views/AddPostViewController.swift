@@ -46,7 +46,7 @@ class AddPostViewController: UIViewController, UIImagePickerControllerDelegate, 
         }
     
     
-    @IBAction func publish(_ sender: Any) {
+    @IBAction func publish(_ sender: UIButton) {
         
         // Check if UITextField is empty
         if titleField.text?.isEmpty ?? true {
@@ -60,13 +60,21 @@ class AddPostViewController: UIViewController, UIImagePickerControllerDelegate, 
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             present(alert, animated: true, completion: nil)
         } else {
+            sender.isUserInteractionEnabled = false
+            let activityIndicator = UIActivityIndicatorView(style: .white)
+            activityIndicator.center = CGPoint(x: sender.bounds.size.width / 2, y: sender.bounds.size.height / 2)
+            sender.addSubview(activityIndicator)
+            activityIndicator.startAnimating()
             // Inputs are valid, proceed with sending the request to the server
             postViewModel.AddPost(title: titleField.text!, description: descriptionField.text!,photo: picker_image! , onSuccess: {
-                
+                activityIndicator.stopAnimating()
+                sender.isUserInteractionEnabled = true
                 DispatchQueue.main.async {
                     self.navigationController?.popViewController(animated: true)
 
                 }            }, onFailure: {errorMessage in
+                    activityIndicator.stopAnimating()
+                    sender.isUserInteractionEnabled = true
                 DispatchQueue.main.async {
                     self.navigationController?.popViewController(animated: true)
 
@@ -74,6 +82,8 @@ class AddPostViewController: UIViewController, UIImagePickerControllerDelegate, 
             }
             )
             DispatchQueue.main.async {
+                activityIndicator.stopAnimating()
+                sender.isUserInteractionEnabled = true
                 self.navigationController?.popViewController(animated: true)
 
             }

@@ -31,7 +31,13 @@ class LoginViewController: UIViewController {
     }
     
 
-    @IBAction func LoginButton(_ sender: Any) {
+    @IBAction func LoginButton(_ sender: UIButton) {
+        sender.isUserInteractionEnabled = false
+        let activityIndicator = UIActivityIndicatorView(style: .white)
+        activityIndicator.center = CGPoint(x: sender.bounds.size.width / 2, y: sender.bounds.size.height / 2)
+        sender.addSubview(activityIndicator)
+        activityIndicator.startAnimating()
+        
         let Email=EmailTextField.text!;
         let Password=PasswordTextField.text!;
         
@@ -50,7 +56,8 @@ class LoginViewController: UIViewController {
         }
        
             UserViewModel().Login(email:Email, password: Password , onSuccess: {
-                
+                activityIndicator.stopAnimating()
+                sender.isUserInteractionEnabled = true
                 DispatchQueue.main.async {
                     if(UserDefaults.standard.bool(forKey: "verified")){
                         
@@ -68,7 +75,8 @@ class LoginViewController: UIViewController {
                 (errorMessage) in
                 self.displayAlert(UserMessage:"Invalid information");
                     print(errorMessage)
-                    
+                activityIndicator.stopAnimating()
+                sender.isUserInteractionEnabled = true
             });
     
         

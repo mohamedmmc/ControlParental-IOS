@@ -22,8 +22,8 @@ class EmailVerificationOTPViewController: UIViewController {
 
     
     
-    @IBAction func ConfirmButton(_ sender: Any) {
-        
+    @IBAction func ConfirmButton(_ sender: UIButton) {
+       
         let OTP=OTPtextField.text;
 
         // Get a reference to the storyboard
@@ -44,10 +44,16 @@ class EmailVerificationOTPViewController: UIViewController {
         
         let defaults = UserDefaults.standard
         let em = defaults.string(forKey: "email")
+        sender.isUserInteractionEnabled = false
+        let activityIndicator = UIActivityIndicatorView(style: .white)
+        activityIndicator.center = CGPoint(x: sender.bounds.size.width / 2, y: sender.bounds.size.height / 2)
+        sender.addSubview(activityIndicator)
+        activityIndicator.startAnimating()
         UserViewModel().verifyEmail(email:em! , otp: OTP!,
             onSuccess: {
 
-
+            activityIndicator.stopAnimating()
+            sender.isUserInteractionEnabled = true
                 // Switch to the new view controller
                 DispatchQueue.main.async {
                     self.performSegue(withIdentifier: "continue", sender: nil)
@@ -59,6 +65,8 @@ class EmailVerificationOTPViewController: UIViewController {
                             
             onFailure: {
             (errorMessage) in
+            activityIndicator.stopAnimating()
+            sender.isUserInteractionEnabled = true
             self.displayAlert(UserMessage:"Invalid OTP");
                 
         })

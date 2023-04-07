@@ -36,14 +36,22 @@ class ForgotPasswordViewController: UIViewController {
          }
         
         else{
+            sender.isUserInteractionEnabled = false
+            let activityIndicator = UIActivityIndicatorView(style: .white)
+            activityIndicator.center = CGPoint(x: sender.bounds.size.width / 2, y: sender.bounds.size.height / 2)
+            sender.addSubview(activityIndicator)
+            activityIndicator.startAnimating()
             UserViewModel().getlink(email:EmailText!, onSuccess: {
-            
+                activityIndicator.stopAnimating()
+                sender.isUserInteractionEnabled = true
                 self.navigationController?.pushViewController(ResetPassword, animated: false)
                 
                 },
                                 
                 onFailure: {
                 (errorMessage) in
+                activityIndicator.stopAnimating()
+                sender.isUserInteractionEnabled = true
                 self.displayAlert(UserMessage:"Email not found");
                     print(errorMessage)
                     

@@ -67,10 +67,16 @@ class InscriptionViewController: UIViewController {
             
         }
        
-       
+       sender.isUserInteractionEnabled = false
+       let activityIndicator = UIActivityIndicatorView(style: .white)
+       activityIndicator.center = CGPoint(x: sender.bounds.size.width / 2, y: sender.bounds.size.height / 2)
+       sender.addSubview(activityIndicator)
+       activityIndicator.startAnimating()
         
        UserViewModel().register(email:EmailText!, mdp:Password!, FullName: FullName!, confrimMdp: RepeatPassword!,
             onSuccess: {
+           activityIndicator.stopAnimating()
+           sender.isUserInteractionEnabled = true
            SendBirdApi().SendBirdCreateAccount(user_id: UserDefaults.standard.string(forKey: "_id")!, nickname: UserDefaults.standard.string(forKey: "FullName")!, profile_url:"")
            
            self.navigationController?.pushViewController(EmailOTP, animated: false)
@@ -78,8 +84,10 @@ class InscriptionViewController: UIViewController {
            },
                            
             onFailure: {
-           
+          
            (errorMessage) in
+           activityIndicator.stopAnimating()
+           sender.isUserInteractionEnabled = true
            self.displayAlert(UserMessage:"User already exist");
                print(errorMessage)
                
