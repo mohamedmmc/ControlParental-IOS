@@ -8,6 +8,7 @@
 import UIKit
 import SwiftUI
 import Foundation
+import Kingfisher
 class ProfileViewController: UIViewController , UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     @ObservedObject var userViewModel=UserViewModel()
@@ -70,8 +71,12 @@ class ProfileViewController: UIViewController , UIImagePickerControllerDelegate,
                 BirthDate.date = birthDate
             }
         }
-    }
-    
+        let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+               view.addGestureRecognizer(tap)
+         }
+         @objc func dismissKeyboard() {
+             view.endEditing(true)
+         }
 
     @IBAction func SaveButton(_ sender: UIButton) {
        
@@ -111,7 +116,7 @@ class ProfileViewController: UIViewController , UIImagePickerControllerDelegate,
                 // Switch to the new view controller
                 DispatchQueue.main.async {
                     
-                    SendBirdApi().SendBirdUpdateProfil(user_id: _id!, nickname: Username!, profile_url: UserDefaults.standard.string(forKey: "ProfilePic")!)
+                    SendBirdApi().SendBirdUpdateProfil(user_id: _id!, nickname: Username!, profile_url: UserDefaults.standard.string(forKey: "ProfilePic") ?? "")
                     DispatchQueue.main.async {
                         let name = Notification.Name("updateProfil")
                         let notification = Notification(name: name)

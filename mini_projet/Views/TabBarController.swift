@@ -34,15 +34,13 @@ class TabBarController: UITabBarController ,SBDChannelDelegate{
         // Create an instance of SBUGroupChannelListViewController
         let channelListVC = SBUGroupChannelListViewController()
         
-        channelListVC.navigationItem.hidesBackButton = true
         channelListVC.tabBarItem = UITabBarItem(title: "", image: UIImage(systemName: "text.bubble"), tag: 0)
-        channelListVC.navigationItem.hidesBackButton = true
-        
-        // Embed each of your existing view controllers in a navigation controller
+        channelListVC.navigationItem.leftBarButtonItem = nil;
+        channelListVC.navigationItem.hidesBackButton = true;
+     
         let profileController = UINavigationController(rootViewController: profile)
         let feedController = UINavigationController(rootViewController: feed)
         let navigationController = UINavigationController(rootViewController: channelListVC)
-
         
         UserDefaults.standard.set(true, forKey: "connectedBool")
         // Set the view controllers for the tab bar controller
@@ -71,8 +69,8 @@ extension TabBarController: UITabBarControllerDelegate  {
 
 extension TabBarController {
     func channel(_ sender: SBDBaseChannel, didCreateGroupChannel channel: SBDGroupChannel) {
-        
-        if channel.customType == "admin" {
+        print(channel)
+        if channel.customType == "oussama bzainia" {
             channel.delete(completionHandler: { (error) in
                 if error != nil {
                     // Handle error

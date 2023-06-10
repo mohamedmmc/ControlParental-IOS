@@ -23,9 +23,14 @@ class AddPostViewController: UIViewController, UIImagePickerControllerDelegate, 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
+        descriptionField.textColor = .black
+        // Do any additional seup after loading the view.
+        let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+               view.addGestureRecognizer(tap)
+         }
+         @objc func dismissKeyboard() {
+             view.endEditing(true)
+         }
     
     @IBAction func pick(_ sender: Any) {
         let myPickerControllerGallery = UIImagePickerController()

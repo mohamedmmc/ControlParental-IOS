@@ -13,8 +13,9 @@ class PostViewModel:ObservableObject{
 
     @Published var UserPosts = [Post]()
 
-    
-    let hostAdresse="https://aestetica.onrender.com"
+//    let hostAdresse="http://192.168.1.30:9090"
+//    let hostAdresse="http://172.20.10.3:9090"
+    let hostAdresse = "https://aestetica.onrender.com"
     
     func AddPost(title:String,description:String, photo: UIImage, onSuccess: @escaping () -> Void ,onFailure: @escaping (_ errorMessage: String) -> Void)
     {
@@ -123,7 +124,39 @@ class PostViewModel:ObservableObject{
 
     }
     
-    
+    func likeUnlike(postId:String,callback: @escaping (Bool)->Void){
+        
+        let parameters = [
+            "userId": UserDefaults.standard.string(forKey: "_id")!
+              ]
+
+        var request = URLRequest(url: URL(string: hostAdresse+"/likePost/" + postId)!,timeoutInterval: Double.infinity)
+                   request.httpMethod = "PUT"
+        request.setValue("Application/json", forHTTPHeaderField: "Content-Type")
+                   request.httpBody =  try? JSONSerialization.data(withJSONObject: parameters, options: [])
+                   let task = URLSession.shared.dataTask(with: request) { data, response, error in
+                     guard let data = data else {
+                       print(String(describing: error))
+                       return
+                     }
+                       do {
+                           
+                           if let jsonRes  = try? JSONSerialization.jsonObject(with: data, options:[] ) as? [String: Any]{
+                               callback(true)
+                           }
+                        
+                           
+                           
+                       } catch let err {
+                           print(err)
+                           callback(false)
+                       }
+                     //print(String(data: data, encoding: .utf8)!)
+                   }
+
+                   task.resume()
+
+    }
     
     
     }

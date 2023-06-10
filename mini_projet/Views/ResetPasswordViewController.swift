@@ -21,7 +21,12 @@ class ResetPasswordViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         self.navigationItem.setHidesBackButton(true, animated: true)
-    }
+        let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+               view.addGestureRecognizer(tap)
+         }
+         @objc func dismissKeyboard() {
+             view.endEditing(true)
+         }
     
     @IBAction func ResetPasswordButton(_ sender: UIButton) {
         

@@ -13,6 +13,8 @@ class UserViewModel:ObservableObject{
     
     
     @Published var VerificationEmail: String?
+//    let hostAdresse="http://192.168.1.30:9090"
+//    let hostAdresse="http://172.20.10.3:9090"
     let hostAdresse="https://aestetica.onrender.com"
     
     
@@ -35,6 +37,7 @@ class UserViewModel:ObservableObject{
                     defaults.set(data.Description, forKey: "Description")
                     defaults.set(data.Gender, forKey: "Gender")
                     defaults.set(data.BirthDate, forKey: "BirthDate")
+                    defaults.set(data.createdAt, forKey: "createdAt")
                     SBUGlobals.currentUser = SBUUser(userId: data._id!)
                     onSuccess()
                     
@@ -68,6 +71,7 @@ class UserViewModel:ObservableObject{
                     defaults.set(data.Description, forKey: "Description")
                     defaults.set(data.Gender, forKey: "Gender")
                     defaults.set(data.BirthDate, forKey: "BirthDate")
+                    defaults.set(data.createdAt, forKey: "createdAt")
                     SBUGlobals.currentUser = SBUUser(userId: UserDefaults.standard.string(forKey: "_id")!)
                     onSuccess()
                     
@@ -105,6 +109,7 @@ class UserViewModel:ObservableObject{
                     defaults.set(data.Description, forKey: "Description")
                     defaults.set(data.Gender, forKey: "Gender")
                     defaults.set(data.BirthDate, forKey: "BirthDate")
+                    defaults.set(data.createdAt, forKey: "createdAt")
                     SBUGlobals.currentUser = SBUUser(userId: UserDefaults.standard.string(forKey: "_id")!)
                     onSuccess()
                     
@@ -149,7 +154,7 @@ class UserViewModel:ObservableObject{
     
     func resendOTP(id:String,onSuccess: @escaping () -> Void ,onFailure: @escaping (_ errorMessage: String) -> Void)
     {
-        AF.request(hostAdresse+"/MiniProjet//resend/OTP" , method: .post, parameters: ["id":id] ,encoding: JSONEncoding.default)
+        AF.request(hostAdresse+"/MiniProjet/resend/OTP" , method: .post, parameters: ["id":id] ,encoding: JSONEncoding.default)
             .validate()
             .responseDecodable(of: User.self) {
                 (response) in
@@ -241,6 +246,7 @@ class UserViewModel:ObservableObject{
                     defaults.set(data.PhoneNumber, forKey: "PhoneNumber")
                     defaults.set(data.Description, forKey: "Description")
                     defaults.set(data.Gender, forKey: "Gender")
+                    defaults.set(data.createdAt, forKey: "createdAt")
                     defaults.set(data.BirthDate, forKey: "BirthDate")
                     
                     
@@ -253,7 +259,7 @@ class UserViewModel:ObservableObject{
     
     
     func findUserById(id: String) -> User {
-        var user = User(_id: "", email: "", mdp: "", FullName: "", confrimMdp: "", verified: false, otp: "", username: "", PhoneNumber: "", Gender: "", BirthDate: "", Description: "", otpReset: "",ProfilePic: "")
+        var user = User(_id: "", email: "", mdp: "", FullName: "", confrimMdp: "", verified: false, otp: "", username: "", PhoneNumber: "", Gender: "", BirthDate: "", Description: "", otpReset: "",ProfilePic: "",createdAt: "")
         var semaphore = DispatchSemaphore (value: 0)
         
         var request = URLRequest(url: URL(string: hostAdresse+"/MiniProjet/"+id)!,timeoutInterval: Double.infinity)
@@ -278,6 +284,7 @@ class UserViewModel:ObservableObject{
                 defaults.set(user.Description, forKey: "Description")
                 defaults.set(user.Gender, forKey: "Gender")
                 defaults.set(user.BirthDate, forKey: "BirthDate")
+                defaults.set(user.createdAt, forKey: "createdAt")
                 
             } catch let err {
                 print(err)
@@ -330,6 +337,7 @@ class UserViewModel:ObservableObject{
                             defaults.set(data.PhoneNumber, forKey: "PhoneNumber")
                             defaults.set(data.Description, forKey: "Description")
                             defaults.set(data.Gender, forKey: "Gender")
+                            defaults.set(data.createdAt, forKey: "createdAt")
                             defaults.set(data.BirthDate, forKey: "BirthDate")
                         }
                     }

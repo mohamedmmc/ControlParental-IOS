@@ -14,7 +14,12 @@ class SendOTPEmailViewController: UIViewController {
         self.navigationItem.setHidesBackButton(true, animated: true)
 
         // Do any additional setup after loading the view.
-    }
+        let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+               view.addGestureRecognizer(tap)
+         }
+         @objc func dismissKeyboard() {
+             view.endEditing(true)
+         }
     
     @IBAction func menuButton(_ sender: Any) {
         performSegue(withIdentifier: "mainMenuSegue", sender: nil)

@@ -28,8 +28,12 @@ class LoginViewController: UIViewController {
         
         PasswordUILabel.sizeToFit()
 
-    }
-    
+        let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+               view.addGestureRecognizer(tap)
+         }
+         @objc func dismissKeyboard() {
+             view.endEditing(true)
+         }
 
     @IBAction func LoginButton(_ sender: UIButton) {
         sender.isUserInteractionEnabled = false

@@ -25,6 +25,7 @@ class ProfilePostsViewController: UIViewController, UITableViewDelegate, UITable
     @IBOutlet weak var PostImage: UIImageView!
     @IBOutlet weak var Upload: UIButton!
     @IBOutlet weak var animationView: LottieAnimationView!
+    @IBOutlet weak var Joined: UILabel!
     @IBOutlet weak var UploadImage: UITextField!
     
 
@@ -70,7 +71,8 @@ class ProfilePostsViewController: UIViewController, UITableViewDelegate, UITable
         if (!(UserDefaults.standard.string(forKey: "username") ?? "").isEmpty){
             userName.text =  "@ " + (UserDefaults.standard.string(forKey: "username") ?? "Not Proviedd")
         }
-        }
+        
+    }
     override func viewDidLoad() {
       
 
@@ -85,7 +87,7 @@ class ProfilePostsViewController: UIViewController, UITableViewDelegate, UITable
         Upload.setTitle("", for: .normal)
         PostsTable.dataSource = self
         PostsTable.delegate = self
-            
+        
         animationView.contentMode = .scaleAspectFit
         animationView.loopMode = .loop
         animationView.animationSpeed = 0.5
@@ -124,12 +126,15 @@ class ProfilePostsViewController: UIViewController, UITableViewDelegate, UITable
         fullName.text = UserDefaults.standard.string(forKey: "FullName") ?? "Not Provided"
         fullName2.text = UserDefaults.standard.string(forKey: "FullName")  ?? "Not Provided"
         userName.text = "@ " + (UserDefaults.standard.string(forKey: "username") ?? "Not Proviedd")
+        Joined.text = UserDefaults.standard.string(forKey: "createdAt")!.formattedDateJoined()
         if ((UserDefaults.standard.string(forKey: "ProfilePic") ?? "").isEmpty){
             ProfileImage.image = UIImage(named: "user")
             profileImage2.image = UIImage(named: "user")
         }else{
-            ProfileImage.imageFromServerURL(urlString: UserDefaults.standard.string(forKey: "ProfilePic")!)
-            profileImage2.imageFromServerURL(urlString: UserDefaults.standard.string(forKey: "ProfilePic")!)
+//            ProfileImage.imageFromServerURL(urlString: UserDefaults.standard.string(forKey: "ProfilePic")!)
+//            profileImage2.imageFromServerURL(urlString: UserDefaults.standard.string(forKey: "ProfilePic")!)
+            profileImage2.kf.setImage(with: URL(string: UserDefaults.standard.string(forKey: "ProfilePic")!))
+            ProfileImage.kf.setImage(with: URL(string: UserDefaults.standard.string(forKey: "ProfilePic")!))
         }
         if(self.postViewModel.UserPosts.isEmpty){
             self.PostsTable.isHidden = true

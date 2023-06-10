@@ -47,3 +47,15 @@ extension UIView {
         self.layer.addSublayer(shapeLayer)
     }
 }
+
+extension String {
+    func formattedDateJoined() -> String? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+        if let date = dateFormatter.date(from: self) {
+            dateFormatter.dateFormat = "dd-MM-yyyy"
+            return "Joined: " + dateFormatter.string(from: date)
+        }
+        return nil
+    }
+}

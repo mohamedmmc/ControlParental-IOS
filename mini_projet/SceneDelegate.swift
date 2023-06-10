@@ -21,7 +21,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
         self.loadBaseController()
         
-
+        if #available(iOS 13.0, *) {
+            window?.overrideUserInterfaceStyle = .light
+        }
     
     }
        
@@ -29,11 +31,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         guard let window = self.window else { return }
         window.makeKeyAndVisible()
-        if let defaults = UserDefaults.standard.dictionaryRepresentation() as? [String:Any] {
-            for (key, value) in defaults {
-                print("\(key) = \(value)")
-            }
-        }
+
             if !(UserDefaults.standard.string(forKey: "_id") ?? "").isEmpty {
                 if !(UserDefaults.standard.bool(forKey: "verified")) {
                     let sendOTPEmailVC = storyboard.instantiateViewController(withIdentifier: "EmailOTP")
